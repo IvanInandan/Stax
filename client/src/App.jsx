@@ -1,70 +1,34 @@
-import { useState, useEffect } from 'react'
-import Balance from './components/Balance'
-import Transactions from './components/Transactions'
-import Categories from './components/Categories'
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 
-const App = () => {
-  const [balance, setBalance] = useState(0)
-  const [newBalance, setNewBalance] = useState('')
-
-  const transactions = [
-    {
-      name: "Shell",
-      category: "Gas",
-      amount: 60,
-      type: "debit"
-    },
-    {
-      name: "Din Tai Fung",
-      category: "Food",
-      amount: 120,
-      type: "debit"
-    },
-    {
-      name: "Venmo",
-      category: "Transfer",
-      amount: 50,
-      type: "credit"
-    },
-    {
-      name: "Mesa Rim",
-      category: "Bills",
-      amount: 99,
-      type: "debit"
-    },
-    {
-      name: "Angelikas",
-      category: "Entertainment",
-      amount: 21,
-      type: "debit"
-    },
-  ]
-
-  const updateNewBalance = (event) => {
-    setNewBalance(event.target.value)
-  }
-
-  const updateBalance = (event) => {
-    event.preventDefault()
-    setBalance(newBalance)
-    setNewBalance('')
-  }
+function App() {
+  const [count, setCount] = useState(0)
 
   return (
-    <div>
-      <Balance
-        balance={balance}
-        updateBalance={updateBalance}
-        newBalance={newBalance}
-        updateNewBalance={updateNewBalance}
-      />
-      <Transactions
-        transactions={transactions}
-      />
-      <Categories
-        transactions={transactions}
-      />
-    </div>
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
   )
 }
 
