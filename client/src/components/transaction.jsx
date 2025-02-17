@@ -10,7 +10,7 @@ const Transaction = ({ transaction, deleteTransaction }) => {
   return (
     <div>
       <span>
-        {transaction.name}: {transaction.amount} ({transaction.type}) --{" "}
+        {transaction.name}: ${transaction.amount} ({transaction.type}) --{" "}
         {transaction.category}
       </span>
 

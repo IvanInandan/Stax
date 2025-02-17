@@ -32,7 +32,7 @@ const TransactionForm = ({ addTransaction }) => {
       <h2>Add transaction</h2>
       <form onSubmit={createTransaction}>
         <div>
-          Amount
+          Amount $
           <input
             type="number"
             value={amount}

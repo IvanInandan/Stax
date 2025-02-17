@@ -20,34 +20,38 @@ const App = () => {
       .then((transactions) => setTransactions(transactions));
   }, []);
 
+  // Function in charge of displaying notification
+  const displayNotif = (message, status) => {
+    // Set message & status to arguments
+    setMessage(message);
+    setStatus(status);
+
+    // Reset after 5 secods
+    setTimeout(() => {
+      setMessage(null);
+      setStatus(null);
+    }, 5000);
+  };
+
   const addTransaction = async (transaction) => {
     try {
       const response = await transactionService.create(transaction);
       setTransactions((oldTransactions) => [...oldTransactions, response]); // Rebuild transactions array and set state
+      displayNotif("Successfully added transaction!", true);
     } catch (error) {
-      setMessage(error.response.data.error); // Set message state to error
-      setStatus(false);
-      setTimeout(() => {
-        setMessage(null);
-        setStatus(null);
-      }, 5000); // After 5 seconds, set message state to null
+      displayNotif(error.response.data.error, false);
     }
   };
 
   const deleteTransaction = async (id) => {
     try {
       const response = await transactionService.remove(id);
-      console.log(response);
       setTransactions((oldTransactions) =>
         oldTransactions.filter((transaction) => transaction.id !== id)
       );
+      displayNotif("Successfully deleted transaction!", true);
     } catch (error) {
-      setMessage(error.response.data.error); // Set message state to error
-      setStatus(false);
-      setTimeout(() => {
-        setMessage(null);
-        setStatus(null);
-      }, 5000); // After 5 seconds, set message state to null
+      displayNotif(error.response.data.error, false);
     }
   };
 
