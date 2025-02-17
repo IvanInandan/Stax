@@ -22,8 +22,22 @@ const App = () => {
   const addTransaction = async (transaction) => {
     try {
       const response = await transactionService.create(transaction);
-      console.log(response);
       setTransactions((oldTransactions) => [...oldTransactions, response]); // Rebuild transactions array and set state
+    } catch (error) {
+      setMessage(error.response.data.error); // Set message state to error
+      setTimeout(() => {
+        setMessage(null);
+      }, 5000); // After 5 seconds, set message state to null
+    }
+  };
+
+  const deleteTransaction = async (id) => {
+    try {
+      const response = await transactionService.remove(id);
+      console.log(response);
+      setTransactions((oldTransactions) =>
+        oldTransactions.filter((transaction) => transaction.id !== id)
+      );
     } catch (error) {
       setMessage(error.response.data.error); // Set message state to error
       setTimeout(() => {
@@ -37,7 +51,11 @@ const App = () => {
       <Notification message={message} />
       <h1>Transactions</h1>
       {transactions.map((transaction, index) => (
-        <Transaction key={transaction.id} transaction={transaction} />
+        <Transaction
+          key={transaction.id}
+          transaction={transaction}
+          deleteTransaction={deleteTransaction}
+        />
       ))}
 
       <TransactionForm addTransaction={addTransaction} />

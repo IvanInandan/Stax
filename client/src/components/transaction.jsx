@@ -1,4 +1,12 @@
-const Transaction = ({ transaction }) => {
+const Transaction = ({ transaction, deleteTransaction }) => {
+  const removeTransaction = (event) => {
+    event.preventDefault();
+
+    if (window.confirm("Are you sure you want to delete this transaction?")) {
+      deleteTransaction(transaction.id);
+    }
+  };
+
   return (
     <div>
       <span>
@@ -6,7 +14,7 @@ const Transaction = ({ transaction }) => {
         {transaction.category}
       </span>
 
-      <button>Delete</button>
+      <button onClick={removeTransaction}>delete</button>
     </div>
   );
 };

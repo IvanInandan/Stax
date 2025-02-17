@@ -46,7 +46,7 @@ transactionRouter.delete("/:id", async (request, response, next) => {
     const id = request.params.id;
     const deletedTransaction = await Transaction.findByIdAndDelete(id);
 
-    if (!updatedTransaction) {
+    if (!deletedTransaction) {
       return response.status(404).json({ error: "Transaction not found" });
     }
 
