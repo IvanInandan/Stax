@@ -1,9 +1,35 @@
-const Notification = ({ message }) => {
+const Notification = ({ message, status }) => {
   // If there's no message, don't return anything
   if (message === null) {
     return null;
   } else {
-    return <div className="notification">{message}</div>;
+    // Set style of notification based on 'status'
+    const style =
+      status === true
+        ? {
+            color: "green",
+            background: "lightgrey",
+            fontSize: "20px",
+            borderStyle: "solid",
+            borderRadius: "5px",
+            padding: "10px",
+            marginBottom: "10px",
+          }
+        : {
+            color: "red",
+            background: "lightgrey",
+            fontSize: "20px",
+            borderStyle: "solid",
+            borderRadius: "5px",
+            padding: "10px",
+            marginBottom: "10px",
+          };
+
+    return (
+      <div className="notification" style={style}>
+        {message}
+      </div>
+    );
   } // Otherwise return message encased in a div
 };
 

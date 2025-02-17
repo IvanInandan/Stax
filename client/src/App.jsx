@@ -12,6 +12,7 @@ import transactionService from "./services/transactions";
 const App = () => {
   const [transactions, setTransactions] = useState([]);
   const [message, setMessage] = useState(null);
+  const [status, setStatus] = useState(null);
 
   useEffect(() => {
     transactionService
@@ -25,8 +26,10 @@ const App = () => {
       setTransactions((oldTransactions) => [...oldTransactions, response]); // Rebuild transactions array and set state
     } catch (error) {
       setMessage(error.response.data.error); // Set message state to error
+      setStatus(false);
       setTimeout(() => {
         setMessage(null);
+        setStatus(null);
       }, 5000); // After 5 seconds, set message state to null
     }
   };
@@ -40,15 +43,17 @@ const App = () => {
       );
     } catch (error) {
       setMessage(error.response.data.error); // Set message state to error
+      setStatus(false);
       setTimeout(() => {
         setMessage(null);
+        setStatus(null);
       }, 5000); // After 5 seconds, set message state to null
     }
   };
 
   return (
     <div>
-      <Notification message={message} />
+      <Notification message={message} status={status} />
       <h1>Transactions</h1>
       {transactions.map((transaction, index) => (
         <Transaction
