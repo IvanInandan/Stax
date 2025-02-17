@@ -4,6 +4,5 @@ Content-Type: application/json
 {
     "type": "credit",
     "name": "Payday",
-    "category": "Misc",
-    "amount": "$9000"
+    "category": "Misc"
 }
