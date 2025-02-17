@@ -33,7 +33,7 @@ transactionRouter.post("/", async (request, response, next) => {
     const body = request.body;
     const transaction = new Transaction(body);
     const newTransaction = await transaction.save();
-    response.status(201).json({ added: newTransaction });
+    response.status(201).json(newTransaction);
   } catch (error) {
     // response.status(400).json(error); --> Used to check error by sending as a response, but then next() cannot be used
     // console.error(error) --> alternatively this can be used in conjunction with next()

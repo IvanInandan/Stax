@@ -6,4 +6,9 @@ const getAll = () => {
   return request.then((response) => response.data);
 };
 
-export default { getAll };
+const create = (transaction) => {
+  const request = axios.post(baseUrl, transaction);
+  return request.then((response) => response.data);
+};
+
+export default { getAll, create };

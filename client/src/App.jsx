@@ -1,5 +1,11 @@
+// Import hooks
 import { useState, useEffect } from "react";
-import Transaction from "./components/transaction";
+
+// Import components
+import Transaction from "./components/Transaction";
+import TransactionForm from "./components/TransactionForm";
+
+// Import API services
 import transactionService from "./services/transactions";
 
 const App = () => {
@@ -11,7 +17,15 @@ const App = () => {
       .then((transactions) => setTransactions(transactions));
   }, []);
 
-  console.log(transactions);
+  const addTransaction = async (transaction) => {
+    try {
+      const response = await transactionService.create(transaction);
+      console.log(response);
+      setTransactions((oldTransactions) => [...oldTransactions, response]);
+    } catch (error) {
+      console.log(error.response.data.error);
+    }
+  };
 
   return (
     <div>
@@ -19,6 +33,8 @@ const App = () => {
       {transactions.map((transaction, index) => (
         <Transaction key={transaction.id} transaction={transaction} />
       ))}
+
+      <TransactionForm addTransaction={addTransaction} />
     </div>
   );
 };
