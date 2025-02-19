@@ -6,6 +6,7 @@ import Togglable from "./components/Togglable";
 import Transaction from "./components/Transaction";
 import Notification from "./components/Notification";
 import TransactionForm from "./components/TransactionForm";
+import Categories from "./components/Categories";
 
 // Import API services
 import transactionService from "./services/transactions";
@@ -88,6 +89,7 @@ const App = () => {
       <Notification message={message} status={status} />
       {transactionList()}
       {transactionForm()}
+      <Categories transactions={transactions} />
     </div>
   );
 };

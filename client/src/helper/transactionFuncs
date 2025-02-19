@@ -1,0 +1,26 @@
+const findCategories = (transactions) => {
+  const categories = [
+    ...new Set(transactions.map((transaction) => transaction.category)),
+  ];
+
+  return categories;
+};
+
+const countCategory = (transactions, category) => {
+  const categoryCount = transactions.reduce((count, transaction) => {
+    return transaction.category === category ? count + 1 : count;
+  }, 0);
+
+  return categoryCount;
+};
+
+const calcPercent = (transactions, categories) => {
+  const breakdown = categories.reduce((acc, category) => {
+    acc[category] = countCategory(transactions, category) / transactions.length;
+    return acc;
+  }, {});
+
+  return breakdown;
+};
+
+export { findCategories, countCategory, calcPercent };

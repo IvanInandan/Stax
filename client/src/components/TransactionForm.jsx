@@ -29,7 +29,7 @@ const TransactionForm = ({ addTransaction }) => {
 
   return (
     <div>
-      <h2>Add transaction</h2>
+      <h2 className="form-header">Add transaction</h2>
       <form onSubmit={createTransaction}>
         <div>
           Amount $
