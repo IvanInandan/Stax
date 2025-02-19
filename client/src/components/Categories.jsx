@@ -1,12 +1,15 @@
 import {
   findCategories,
-  countCategory,
+  categoryTotal,
   calcPercent,
 } from "../helper/transactionFuncs";
 
 const Categories = ({ transactions }) => {
+  const totalSpendings = transactions.reduce((acc, transaction) => {
+    return acc + parseInt(transaction.amount);
+  }, 0);
+
   const categories = findCategories(transactions);
-  console.log;
 
   return (
     <div>
@@ -14,9 +17,10 @@ const Categories = ({ transactions }) => {
 
       <ul>
         {categories.map((category, index) => {
-          const percent = Math.round(
-            (countCategory(transactions, category) / transactions.length) * 100
-          );
+          const total = categoryTotal(transactions, category);
+          console.log(total);
+          const percent = Math.round((total / totalSpendings) * 100);
+          console.log(percent);
 
           return (
             <li key={index}>
@@ -25,6 +29,8 @@ const Categories = ({ transactions }) => {
           );
         })}
       </ul>
+
+      <h3>Total: ${totalSpendings}</h3>
     </div>
   );
 };
