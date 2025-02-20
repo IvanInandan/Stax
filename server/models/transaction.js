@@ -18,6 +18,10 @@ const transactionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 // Alters the JSON that is returned as a response, but does NOT affect database storage

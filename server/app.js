@@ -12,6 +12,7 @@ const middleware = require("./utils/middleware");
 
 // Define controllers (routers)
 const transactionRouter = require("./controllers/transactions");
+const userRouter = require("./controllers/users");
 const homeRouter = require("./controllers/home");
 
 // Define URL from config util
@@ -35,6 +36,7 @@ app.use(middleware.requestLogger); // Print request to console BEFORE sending
 
 app.use("/", homeRouter);
 app.use("/api/transactions", transactionRouter);
+app.use("/api/users", userRouter);
 
 // Middlewares executed after requests
 app.use(middleware.unknownEndpoint);

@@ -6,7 +6,7 @@ import {
 
 const Categories = ({ transactions }) => {
   const totalSpendings = transactions.reduce((acc, transaction) => {
-    return acc + parseInt(transaction.amount);
+    return acc + Number(transaction.amount);
   }, 0);
 
   const categories = findCategories(transactions);
