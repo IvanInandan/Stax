@@ -1,5 +1,8 @@
 const transactionRouter = require("express").Router();
+const middleware = require("../utils/middleware");
 const Transaction = require("../models/transaction");
+const User = require("../models/user");
+const jwt = require("jsonwebtoken");
 
 // Get all transactions
 transactionRouter.get("/", async (request, response, next) => {
@@ -28,18 +31,32 @@ transactionRouter.get("/:id", async (request, response, next) => {
 });
 
 // Create new transaction
-transactionRouter.post("/", async (request, response, next) => {
-  try {
-    const body = request.body;
-    const transaction = new Transaction(body);
-    const newTransaction = await transaction.save();
-    response.status(201).json(newTransaction);
-  } catch (error) {
-    // response.status(400).json(error); --> Used to check error by sending as a response, but then next() cannot be used
-    // console.error(error) --> alternatively this can be used in conjunction with next()
-    next(error);
+transactionRouter.post(
+  "/",
+  middleware.tokenDecoder,
+  async (request, response, next) => {
+    try {
+      const body = request.body;
+      const token = request.token;
+      const tokenUser = request.user;
+
+      const transaction = new Transaction({
+        type: body.type,
+        name: body.name,
+        category: body.category,
+        amount: body.amount,
+      });
+
+      const newTransaction = await transaction.save();
+
+      response.status(201).json(newTransaction);
+    } catch (error) {
+      // response.status(400).json(error); --> Used to check error by sending as a response, but then next() cannot be used
+      // console.error(error) --> alternatively this can be used in conjunction with next()
+      next(error);
+    }
   }
-});
+);
 
 transactionRouter.delete("/:id", async (request, response, next) => {
   try {

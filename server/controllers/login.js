@@ -20,13 +20,13 @@ loginRouter.post("/", async (request, response, next) => {
 
   // Generate object for token (reason not passing whole user is because we don't want to include all info. username + id is fine)
   // --> more chance for info leak if all is included
-  const userToken = {
+  const userForToken = {
     username: user.username,
     id: user._id,
   };
 
   // Sign object with secret key to generate token
-  const token = jwt.sign(userToken, process.env.SECRET);
+  const token = jwt.sign(userForToken, process.env.SECRET);
 
   response.status(200).send({
     token,
