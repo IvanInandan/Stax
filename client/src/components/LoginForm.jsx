@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const LoginForm = ({ handleLogin }) => {
+const LoginForm = ({ handleLogin, createUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,9 +13,18 @@ const LoginForm = ({ handleLogin }) => {
     setPassword("");
   };
 
+  const newUser = (event) => {
+    event.preventDefault();
+    createUser(username, password);
+
+    // Reset fields
+    setUsername("");
+    setPassword("");
+  };
+
   return (
     <div>
-      <form onSubmit={login}>
+      <form>
         <div>
           Username
           <input
@@ -38,7 +47,8 @@ const LoginForm = ({ handleLogin }) => {
           />
         </div>
 
-        <button type="submit">Login</button>
+        <button onClick={login}>Login</button>
+        <button onClick={newUser}>Create</button>
       </form>
     </div>
   );

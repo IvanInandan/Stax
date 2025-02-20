@@ -12,6 +12,7 @@ import LoginForm from "./components/LoginForm";
 // Import API services
 import transactionService from "./services/transactions";
 import loginService from "./services/login";
+import userService from "./services/user";
 
 const App = () => {
   const [transactions, setTransactions] = useState([]);
@@ -39,6 +40,15 @@ const App = () => {
       setMessage(null);
       setStatus(null);
     }, 5000);
+  };
+
+  const createUser = async (username, password) => {
+    try {
+      const user = await userService.create({ username, password });
+      console.log("App.js USER: -- ", user);
+    } catch (error) {
+      displayNotif(error.response.data.error, false);
+    }
   };
 
   const handleLogin = async (username, password) => {
@@ -76,7 +86,7 @@ const App = () => {
 
   const loginForm = () => (
     <div>
-      <LoginForm handleLogin={handleLogin} />
+      <LoginForm handleLogin={handleLogin} createUser={createUser} />
     </div>
   );
 
@@ -105,10 +115,15 @@ const App = () => {
   return (
     <div>
       <Notification message={message} status={status} />
-      {loginForm()}
-      {transactionList()}
-      {transactionForm()}
-      <Categories transactions={transactions} />
+      {!user && loginForm()}
+      {user && (
+        <div>
+          {" "}
+          {transactionList()}
+          {transactionForm()}
+          <Categories transactions={transactions} />
+        </div>
+      )}
     </div>
   );
 };
