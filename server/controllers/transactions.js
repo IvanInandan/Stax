@@ -36,18 +36,23 @@ transactionRouter.post(
   middleware.tokenDecoder,
   async (request, response, next) => {
     try {
-      const body = request.body;
-      const token = request.token;
-      const tokenUser = request.user;
+      const body = request.body; // Grab body data
+      const decodedToken = request.user; // Grab decodedToken (user) in header
+
+      // Find user associate to token in database
+      const user = await User.findById(decodedToken.id);
 
       const transaction = new Transaction({
         type: body.type,
         name: body.name,
         category: body.category,
         amount: body.amount,
+        user: decodedToken.id, // Attach token user to transaction object
       });
 
-      const newTransaction = await transaction.save();
+      const newTransaction = await transaction.save(); // Save transaction in database and capture response
+      user.transactions = user.transactions.concat(newTransaction._id); // Concat transaction database ID into user's transaction array
+      await user.save(); // Save user to finalize change to transaction array
 
       response.status(201).json(newTransaction);
     } catch (error) {
