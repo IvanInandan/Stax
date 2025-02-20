@@ -34,6 +34,7 @@ transactionSchema.set("toJSON", {
 });
 
 // Defines Transaction model and it will be stored in MongoDB collections as plural of argument
-const Transaction = mongoose.model("transaction", transactionSchema);
+// const 'Transaction' is irrelevant, collection name will be plural form of first argument ("[...], transactionSchema")
+const Transaction = mongoose.model("Transaction", transactionSchema);
 
 module.exports = Transaction;

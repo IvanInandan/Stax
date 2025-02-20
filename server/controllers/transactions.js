@@ -7,7 +7,10 @@ const jwt = require("jsonwebtoken");
 // Get all transactions
 transactionRouter.get("/", async (request, response, next) => {
   try {
-    const transactions = await Transaction.find({});
+    const transactions = await Transaction.find({}).populate("user", {
+      username: 1,
+      email: 1,
+    });
     response.json(transactions);
   } catch (error) {
     next(error);
