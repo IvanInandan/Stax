@@ -34,7 +34,9 @@ mongoose
 app.use(cors()); // Allows your port (server) to be reached by other ports (front-end, other users, etc)
 app.use(express.json()); // JSON Parser (parses request body to JSON before sending to routes)
 app.use(middleware.requestLogger); // Print request to console BEFORE sending
-app.use(middleware.tokenExtractor); // Extract token if it exists in request header
+
+// tokenExtractor middleware sets request.token in all requests
+app.use(middleware.tokenExtractor); // Extract token if it exists in request header and put it into request.token arg
 
 app.use("/", homeRouter);
 app.use("/api/transactions", transactionRouter);

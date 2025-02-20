@@ -26,6 +26,8 @@ const errorHandler = (err, req, res, next) => {
     return res
       .status(400)
       .send({ error: "expected `username` and `email` to be unique" });
+  } else if (err.name === "JsonWebTokenError") {
+    return res.status(400).send({ error: "token is invalid or missing" });
   }
 
   next(err);
