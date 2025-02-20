@@ -7,14 +7,17 @@ import Transaction from "./components/Transaction";
 import Notification from "./components/Notification";
 import TransactionForm from "./components/TransactionForm";
 import Categories from "./components/Categories";
+import LoginForm from "./components/LoginForm";
 
 // Import API services
 import transactionService from "./services/transactions";
+import loginService from "./services/login";
 
 const App = () => {
   const [transactions, setTransactions] = useState([]);
   const [message, setMessage] = useState(null);
   const [status, setStatus] = useState(null);
+  const [user, setUser] = useState(null);
 
   // Declare reference variables
   const transactionFormRef = useRef();
@@ -38,6 +41,16 @@ const App = () => {
     }, 5000);
   };
 
+  const handleLogin = async (username, password) => {
+    try {
+      const user = await loginService.login({ username, password });
+      transactionService.setToken(user.token);
+      setUser(user);
+    } catch (error) {
+      displayNotif(error.response.data.error, false);
+    }
+  };
+
   const addTransaction = async (transaction) => {
     try {
       const response = await transactionService.create(transaction);
@@ -45,7 +58,6 @@ const App = () => {
       transactionFormRef.current.toggleVisibility(); // Toggle visibility of Togglable component
       displayNotif("Successfully added transaction!", true);
     } catch (error) {
-      console.log("in the error");
       displayNotif(error.response.data.error, false);
     }
   };
@@ -61,6 +73,12 @@ const App = () => {
       displayNotif(error.response.data.error, false);
     }
   };
+
+  const loginForm = () => (
+    <div>
+      <LoginForm handleLogin={handleLogin} />
+    </div>
+  );
 
   // Abstracted transactionList into own 'component'
   const transactionList = () => (
@@ -87,6 +105,7 @@ const App = () => {
   return (
     <div>
       <Notification message={message} status={status} />
+      {loginForm()}
       {transactionList()}
       {transactionForm()}
       <Categories transactions={transactions} />
