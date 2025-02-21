@@ -6,4 +6,9 @@ const create = async (credentials) => {
   return response.data;
 };
 
-export default { create };
+const getTransactions = async (id) => {
+  const response = await axios.get(`${baseUrl}/${id}/transactions`);
+  return response.data;
+};
+
+export default { create, getTransactions };

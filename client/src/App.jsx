@@ -23,13 +23,23 @@ const App = () => {
   // Declare reference variables
   const transactionFormRef = useRef();
 
+  // On page reload:
   useEffect(() => {
-    if (user) {
-      transactionService
-        .getAll()
+    // Grab 'loggeduser' variable from local storage cache
+    const loggedUserJSON = window.localStorage.getItem("loggeduser");
+
+    // If loggeduser exists in local storage
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON); // Parse JSON
+      setUser(user); // Set user state to user stored in cache
+      transactionService.setToken(user.token); // Set token used for transaction APIs
+
+      // Grab transactions of logged in user
+      userService
+        .getTransactions(user.id)
         .then((transactions) => setTransactions(transactions));
     }
-  }, [user]);
+  }, []);
 
   // Function in charge of displaying notification
   const displayNotif = (message, status) => {
@@ -56,15 +66,25 @@ const App = () => {
   const handleLogin = async (username, password) => {
     try {
       const user = await loginService.login({ username, password });
-      transactionService.setToken(user.token);
-      setUser(user);
+      window.localStorage.setItem("loggeduser", JSON.stringify(user)); // Storage user data in local cache
+      transactionService.setToken(user.token); // Set token in transactionService APIs with token from login
+      setUser(user); // Set 'user' state to returned object
+
       displayNotif("Successfully logged in!", true);
 
-      const userTransactions = await transactionService.getAll();
+      // Fetch all transactions of logged in user
+      const userTransactions = await userService.getTransactions(user.id);
       setTransactions(userTransactions);
     } catch (error) {
       displayNotif(error.response.data.error, false);
     }
+  };
+
+  const handleLogout = (event) => {
+    event.preventDefault();
+
+    setUser(null);
+    window.localStorage.clear();
   };
 
   const addTransaction = async (transaction) => {
@@ -125,6 +145,8 @@ const App = () => {
       {user && (
         <div>
           {" "}
+          <h3>{user.username} is logged in</h3>
+          <button onClick={handleLogout}>Logout</button>
           {transactionList()}
           {transactionForm()}
           <Categories transactions={transactions} />

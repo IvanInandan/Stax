@@ -11,6 +11,33 @@ userRouter.get("/", async (request, response, next) => {
   }
 });
 
+userRouter.get("/:id", async (request, response, next) => {
+  try {
+    const user = await User.findById(request.params.id);
+    response.json(user);
+  } catch (error) {
+    next(error);
+  }
+});
+
+userRouter.get("/:id/transactions", async (request, response, next) => {
+  try {
+    const user = await User.findById(request.params.id).populate({
+      path: "transactions", // Populate transactions info with all info
+      populate: {
+        path: "user", // Populate 'users' info found within transactions
+        select: "username", // Only select 'username' to be shown under users
+      },
+    });
+
+    const transactions = user.transactions;
+
+    response.json(transactions);
+  } catch (error) {
+    next(error);
+  }
+});
+
 userRouter.post("/", async (request, response, next) => {
   try {
     const { username, password } = request.body; // Grabs and destructure username & password from request body (args)
