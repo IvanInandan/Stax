@@ -24,10 +24,12 @@ const App = () => {
   const transactionFormRef = useRef();
 
   useEffect(() => {
-    transactionService
-      .getAll()
-      .then((transactions) => setTransactions(transactions));
-  }, []);
+    if (user) {
+      transactionService
+        .getAll()
+        .then((transactions) => setTransactions(transactions));
+    }
+  }, [user]);
 
   // Function in charge of displaying notification
   const displayNotif = (message, status) => {
@@ -44,8 +46,8 @@ const App = () => {
 
   const createUser = async (username, password) => {
     try {
-      const user = await userService.create({ username, password });
-      console.log("App.js USER: -- ", user);
+      await userService.create({ username, password });
+      displayNotif("Successfully created user!", true);
     } catch (error) {
       displayNotif(error.response.data.error, false);
     }
@@ -56,6 +58,10 @@ const App = () => {
       const user = await loginService.login({ username, password });
       transactionService.setToken(user.token);
       setUser(user);
+      displayNotif("Successfully logged in!", true);
+
+      const userTransactions = await transactionService.getAll();
+      setTransactions(userTransactions);
     } catch (error) {
       displayNotif(error.response.data.error, false);
     }

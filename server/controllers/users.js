@@ -13,7 +13,7 @@ userRouter.get("/", async (request, response, next) => {
 
 userRouter.post("/", async (request, response, next) => {
   try {
-    const { username, password, email } = request.body; // Grabs and destructure username, password, and email from request body (args)
+    const { username, password } = request.body; // Grabs and destructure username & password from request body (args)
 
     if (password.length < 3) {
       return response
@@ -28,7 +28,6 @@ userRouter.post("/", async (request, response, next) => {
     const user = new User({
       username,
       passwordHash,
-      email,
     });
 
     const savedUser = await user.save();

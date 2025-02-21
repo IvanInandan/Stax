@@ -5,17 +5,24 @@ const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 
 // Get all transactions
-transactionRouter.get("/", async (request, response, next) => {
-  try {
-    const transactions = await Transaction.find({}).populate("user", {
-      username: 1,
-      email: 1,
-    }); // Populate replaces 'user: ${id}' field with values username/email by finding for an id match in 'user', defined by Ref: 'User'
-    response.json(transactions);
-  } catch (error) {
-    next(error);
+transactionRouter.get(
+  "/",
+  middleware.tokenDecoder,
+  async (request, response, next) => {
+    try {
+      const transactions = await Transaction.find({
+        user: request.user.id,
+      }).populate("user", {
+        username: 1,
+        email: 1,
+      }); // Populate replaces 'user: ${id}' field with values username/email by finding for an id match in 'user', defined by Ref: 'User'
+      console.log("TRANS: ", transactions);
+      response.json(transactions);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 // Get transaction by id
 transactionRouter.get("/:id", async (request, response, next) => {

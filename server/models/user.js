@@ -8,10 +8,6 @@ const userSchema = new mongoose.Schema({
     minLength: 3,
   },
   passwordHash: String, // Will declare length requirement in API controller as it needs to be done BEFORE password is hashed
-  email: {
-    type: String,
-    unique: true,
-  },
   transactions: [
     {
       type: mongoose.Schema.Types.ObjectId,

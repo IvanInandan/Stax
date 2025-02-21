@@ -18,9 +18,7 @@ const Categories = ({ transactions }) => {
       <ul>
         {categories.map((category, index) => {
           const total = categoryTotal(transactions, category);
-          console.log(total);
           const percent = Math.round((total / totalSpendings) * 100);
-          console.log(percent);
 
           return (
             <li key={index}>
