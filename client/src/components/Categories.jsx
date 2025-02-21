@@ -27,8 +27,6 @@ const Categories = ({ transactions }) => {
           );
         })}
       </ul>
-
-      <h3>Total: ${totalSpendings}</h3>
     </div>
   );
 };

@@ -1,3 +1,31 @@
 .form-header {
   color: black;
 }
+
+body {
+  overflow: hidden;
+}
+
+.notification {
+  position: absolute; /* Keeps it on top */
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%); /* Centers it */
+  width: max-content;
+  z-index: 1000;
+}
+
+.login {
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginButton {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}

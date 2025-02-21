@@ -24,7 +24,7 @@ const LoginForm = ({ handleLogin, createUser }) => {
 
   return (
     <div>
-      <form>
+      <form className="login">
         <div>
           Username
           <input
@@ -47,8 +47,10 @@ const LoginForm = ({ handleLogin, createUser }) => {
           />
         </div>
 
-        <button onClick={login}>Login</button>
-        <button onClick={newUser}>Create</button>
+        <div className="loginButton">
+          <button onClick={login}>Login</button>
+          <button onClick={newUser}>Create</button>
+        </div>
       </form>
     </div>
   );

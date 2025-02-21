@@ -117,29 +117,39 @@ const App = () => {
   );
 
   // Abstracted transactionList into own 'component'
-  const transactionList = () => (
-    <div>
-      <h1>Transactions</h1>
-      {transactions.map((transaction, index) => (
-        <Transaction
-          key={transaction.id}
-          transaction={transaction}
-          deleteTransaction={deleteTransaction}
-        />
-      ))}
-    </div>
-  );
+  const transactionList = () => {
+    const total = transactions.reduce((count, transaction) => {
+      return count + Number(transaction.amount);
+    }, 0);
+
+    return (
+      <div>
+        <h1>Transactions</h1>
+        <h2>Total: ${total}</h2>
+        {transactions.map((transaction, index) => (
+          <Transaction
+            key={transaction.id}
+            transaction={transaction}
+            deleteTransaction={deleteTransaction}
+          />
+        ))}
+      </div>
+    );
+  };
 
   // Abstracted transactionForm into own 'component'
   const transactionForm = () => (
     <Togglable buttonLabel="add transaction" ref={transactionFormRef}>
-      <TransactionForm addTransaction={addTransaction} />
+      <TransactionForm
+        addTransaction={addTransaction}
+        transactions={transactions}
+      />
     </Togglable>
   );
 
   // Call abstracted components here with notation: {component()}
   return (
-    <div>
+    <div className="page">
       <Notification message={message} status={status} />
       {!user && loginForm()}
       {user && (
