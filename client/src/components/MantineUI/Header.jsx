@@ -24,11 +24,15 @@ import {
   ThemeIcon,
   UnstyledButton,
   useMantineTheme,
+  Modal,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { MantineLogo } from "@mantinex/mantine-logo";
+
 import classes from "./Header.module.scss";
 import { Link } from "react-router-dom";
+
+import Authentication from "./Authentication";
 
 const mockdata = [
   {
@@ -63,9 +67,12 @@ const mockdata = [
   },
 ];
 
-export default function HeaderMegaMenu() {
+export default function Header() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
+
+  const [opened, { open, close }] = useDisclosure(false);
+
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const theme = useMantineTheme();
 
@@ -157,9 +164,40 @@ export default function HeaderMegaMenu() {
           </Group>
 
           <Group visibleFrom="sm">
-            <Link to="/login">
-              <Button variant="default">Log in</Button>
-            </Link>
+            <Modal
+              classNames={{
+                content: classes.loginWindow,
+              }}
+              styles={{
+                header: {
+                  padding: 0,
+                  margin: 0,
+                  height: 0,
+                  minHeight: 0,
+                },
+                title: {
+                  display: "none",
+                },
+              }}
+              closeButtonProps={{
+                style: {
+                  top: 10,
+                  right: 10,
+                  position: "absolute",
+                },
+              }}
+              size="md"
+              opened={opened}
+              onClose={close}
+              centered
+            >
+              <Authentication />
+            </Modal>
+
+            <Button variant="default" onClick={open}>
+              Log in
+            </Button>
+
             <Link to="/register">
               <Button>Sign up</Button>
             </Link>

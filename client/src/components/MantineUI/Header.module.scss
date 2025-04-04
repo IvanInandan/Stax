@@ -80,3 +80,7 @@ $mantine-breakpoint-xl: 1400px;
   border-top: 1px solid
     light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-5));
 }
+
+.loginWindow {
+  border-radius: 24px;
+}
