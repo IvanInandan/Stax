@@ -5,20 +5,20 @@ import { setUser } from "./reducers/userReducer";
 import { setTransactions } from "./reducers/transactionReducer";
 
 // Import components
-import Notification from "./components/Notification";
-import LoginForm from "./components/LoginForm";
 import MainContent from "./components/MainContent";
 import Dashboard from "./components/Dashboard";
 import Settings from "./components/Settings";
 import DashboardLayout from "./components/DashboardLayout";
+import Authentication from "./components/MantineUI/Authentication";
 
 // Import API services
 import transactionService from "./services/transactions";
 import userService from "./services/user";
 
 // Import libraries
-import { Link, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -50,7 +50,16 @@ const App = () => {
   // Call abstracted components here with notation: {component()}
   return (
     <>
-      <Notification notification={notification} />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="colored"
+      />
 
       <Routes>
         {/* Public routes */}
@@ -60,7 +69,7 @@ const App = () => {
             !user ? <MainContent /> : <Navigate to="/dashboard" replace />
           }
         />
-        <Route path="/login" element={<LoginForm />} />
+        <Route path="/login" element={<Authentication />} />
 
         {/* Protected routes, only accessible if the user is authenticated */}
         {user && (
