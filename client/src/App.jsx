@@ -8,11 +8,17 @@ import Notification from "./components/Notification";
 import TransactionForm from "./components/TransactionForm";
 import Categories from "./components/Categories";
 import LoginForm from "./components/LoginForm";
+import Dashboard from "./components/Dashboard";
+import MainContent from "./components/MainContent";
 
 // Import API services
 import transactionService from "./services/transactions";
 import loginService from "./services/login";
 import userService from "./services/user";
+
+// Import libraries
+import { Link, Routes, Route, useNavigate } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 
 const App = () => {
   const [transactions, setTransactions] = useState([]);
@@ -22,6 +28,8 @@ const App = () => {
 
   // Declare reference variables
   const transactionFormRef = useRef();
+
+  const navigate = useNavigate();
 
   // On page reload:
   useEffect(() => {
@@ -75,6 +83,8 @@ const App = () => {
       // Fetch all transactions of logged in user
       const userTransactions = await userService.getTransactions(user.id);
       setTransactions(userTransactions);
+
+      navigate("/dashboard");
     } catch (error) {
       displayNotif(error.response.data.error, false);
     }
@@ -85,6 +95,8 @@ const App = () => {
 
     setUser(null);
     window.localStorage.clear();
+
+    navigate("/home");
   };
 
   const addTransaction = async (transaction) => {
@@ -151,12 +163,46 @@ const App = () => {
   return (
     <div className="page">
       <Notification message={message} status={status} />
-      {!user && loginForm()}
+
+      <nav>
+        <ul>
+          {!user ? (
+            <>
+              <div className="home-nav">
+                <li>
+                  <Link to="/login">Sign in</Link>
+                </li>
+                <li>
+                  <Link to="/register">Register</Link>
+                </li>
+              </div>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+              <li>
+                <button onClick={handleLogout}>Logout</button>
+              </li>
+            </>
+          )}
+        </ul>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<MainContent />} />
+        <Route
+          path="/login"
+          element={
+            <LoginForm handleLogin={handleLogin} createUser={createUser} />
+          }
+        />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+
       {user && (
         <div>
-          {" "}
-          <h3>{user.username} is logged in</h3>
-          <button onClick={handleLogout}>Logout</button>
           {transactionList()}
           {transactionForm()}
           <Categories transactions={transactions} />

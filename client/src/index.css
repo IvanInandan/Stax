@@ -6,6 +6,27 @@ body {
   overflow: hidden;
 }
 
+nav ul {
+  display: flex;
+  gap: 10px;
+  list-style-type: none; /* Remove bullet points */
+  margin: 0;
+  padding: 0;
+}
+
+nav a:hover {
+  color: #007bff; /* Optional: Change color on hover */
+}
+
+.home-nav {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  list-style-type: none; /* Remove bullet points */
+  margin: 0;
+  padding: 0;
+}
+
 .notification {
   position: absolute; /* Keeps it on top */
   top: 0;
