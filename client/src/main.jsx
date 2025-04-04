@@ -14,7 +14,10 @@ import { BrowserRouter as Router } from "react-router-dom";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <Router>
-      <MantineProvider defaultColorScheme="dark">
+      <MantineProvider
+        theme={{ primaryColor: "green" }}
+        defaultColorScheme="dark"
+      >
         <App />
       </MantineProvider>
     </Router>

@@ -3,7 +3,6 @@ import { Avatar, Group, Text, UnstyledButton } from "@mantine/core";
 import classes from "./UserButton.module.scss";
 
 export default function UserButton({ user }) {
-  console.log(user);
   return (
     <UnstyledButton className={classes.user}>
       <Group>
