@@ -4,7 +4,7 @@ import classes from "./Faq.module.scss";
 
 const placeholder = "Insert text here";
 
-export default function FaqWithImage() {
+export default function Faq() {
   return (
     <div className={classes.wrapper}>
       <Container size="lg">

@@ -25,7 +25,7 @@ export default function Contact() {
   });
 
   return (
-    <Container size="sm">
+    <Container className="contactContainer" size="sm">
       <form onSubmit={form.onSubmit(() => {})}>
         <Title
           order={2}
