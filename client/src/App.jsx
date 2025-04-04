@@ -52,24 +52,8 @@ const App = () => {
     <>
       <Notification notification={notification} />
 
-      <nav>
-        <ul>
-          {!user && (
-            <>
-              <div className="home-nav">
-                <li>
-                  <Link to="/login">Sign in</Link>
-                </li>
-                <li>
-                  <Link to="/register">Register</Link>
-                </li>
-              </div>
-            </>
-          )}
-        </ul>
-      </nav>
-
       <Routes>
+        {/* Public routes */}
         <Route
           path="/"
           element={
@@ -78,6 +62,7 @@ const App = () => {
         />
         <Route path="/login" element={<LoginForm />} />
 
+        {/* Protected routes, only accessible if the user is authenticated */}
         {user && (
           <>
             <Route
@@ -98,6 +83,10 @@ const App = () => {
             />
           </>
         )}
+
+        {/* If the user is not authenticated and tries to access protected routes */}
+        <Route path="/dashboard" element={<Navigate to="/" replace />} />
+        <Route path="/settings" element={<Navigate to="/" replace />} />
       </Routes>
     </>
   );

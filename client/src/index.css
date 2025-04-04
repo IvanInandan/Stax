@@ -1,9 +1,9 @@
-.form-header {
-  color: black;
-}
-
 body {
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 nav ul {
@@ -49,4 +49,8 @@ nav a:hover {
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+
+.form-header {
+  color: black;
 }
