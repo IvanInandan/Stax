@@ -1,69 +1,29 @@
-import HeaderMegaMenu from "./MantineUI/HeaderMegaMenu";
+import Header from "./MantineUI/Header";
+import Hero from "./MantineUI/Hero";
+import Features from "./MantineUI/Features";
+import Faq from "./MantineUI/Faq";
+import Contact from "./MantineUI/Contact";
+import Footer from "./MantineUI/Footer";
 
 const MainContent = () => {
   return (
     <div>
-      <HeaderMegaMenu />
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <section id="about">
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
-        <h1>About</h1>
+      <Header />
+      <section id="hero">
+        <Hero />
       </section>
+      <section id="features">
+        <Features />
+      </section>
+      <section id="faq">
+        <div style={{ marginLeft: "16rem" }}>
+          <Faq />
+        </div>
+      </section>
+      <section id="contact">
+        <Contact />
+      </section>
+      <Footer />
     </div>
   );
 };

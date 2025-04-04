@@ -27,7 +27,7 @@ import {
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { MantineLogo } from "@mantinex/mantine-logo";
-import classes from "./HeaderMegaMenu.module.scss";
+import classes from "./Header.module.scss";
 import { Link } from "react-router-dom";
 
 const mockdata = [

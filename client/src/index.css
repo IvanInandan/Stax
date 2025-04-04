@@ -54,3 +54,13 @@ nav a:hover {
 .form-header {
   color: black;
 }
+
+#hero {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 7rem;
+}
+
+#hero > * {
+  margin: 0 !important;
+}
