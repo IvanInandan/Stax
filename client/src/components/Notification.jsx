@@ -1,6 +1,6 @@
-const Notification = ({ message, status }) => {
+const Notification = ({ notification }) => {
   // If there's no message, don't return anything
-  if (message === null) {
+  if (notification === null) {
     return null;
   } else {
     // Set style of notification based on 'status'
@@ -27,7 +27,7 @@ const Notification = ({ message, status }) => {
 
     return (
       <div className="notification" style={style}>
-        {message}
+        {notification}
       </div>
     );
   } // Otherwise return message encased in a div

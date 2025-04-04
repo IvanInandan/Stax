@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { handleLogout } from "../helper/authFuncs.js";
 import {
   IconHome,
   IconLogout,
@@ -21,6 +23,7 @@ const data = [
 export default function Dashboard() {
   const [active, setActive] = useState("Dashboard");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const links = data.map((item) => (
     <a
@@ -67,7 +70,7 @@ export default function Dashboard() {
           className={classes.link}
           onClick={(event) => {
             event.preventDefault();
-            navigate("/logout");
+            handleLogout(dispatch, navigate, event);
           }}
         >
           <IconLogout className={classes.linkIcon} stroke={1.5} />

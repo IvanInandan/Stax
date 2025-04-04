@@ -13,6 +13,7 @@
     "@mantine/core": "^7.17.3",
     "@mantine/hooks": "^7.17.3",
     "@mantinex/mantine-logo": "^1.1.0",
+    "@reduxjs/toolkit": "^2.6.1",
     "@tabler/icons-react": "^3.31.0",
     "axios": "^1.7.9",
     "clsx": "^2.1.1",
@@ -20,7 +21,9 @@
     "next": "^15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^7.4.1",
+    "redux": "^5.0.1",
     "tailwind-merge": "^3.1.0"
   },
   "devDependencies": {
@@ -36,6 +39,7 @@
     "postcss": "^8.5.3",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
+    "sass-embedded": "^1.86.3",
     "vite": "^6.1.0"
   }
 }

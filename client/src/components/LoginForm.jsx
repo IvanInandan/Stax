@@ -1,12 +1,27 @@
 import { useState } from "react";
+import { handleLogin, createUser } from "../helper/authFuncs";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-const LoginForm = ({ handleLogin, createUser }) => {
+const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const login = (event) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const login = async (event) => {
     event.preventDefault();
-    handleLogin(username, password);
+    console.log("User: ", username);
+    console.log("Pass: ", password);
+
+    const loginSuccess = await handleLogin(dispatch, username, password);
+
+    if (loginSuccess) {
+      navigate("/dashboard");
+    } else {
+      console.log("login failed");
+    }
 
     // Reset fields
     setUsername("");

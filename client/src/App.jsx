@@ -1,5 +1,8 @@
 // Import hooks
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+
+import { setUser } from "./reducers/userReducer";
+import { setTransactions } from "./reducers/transactionReducer";
 
 // Import components
 import Notification from "./components/Notification";
@@ -11,102 +14,48 @@ import DashboardLayout from "./components/DashboardLayout";
 
 // Import API services
 import transactionService from "./services/transactions";
-import loginService from "./services/login";
 import userService from "./services/user";
 
 // Import libraries
 import { Link, Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 // Import Mantine UI
 import "@mantine/core/styles.css";
 import { MantineProvider } from "@mantine/core";
 
 const App = () => {
-  const [transactions, setTransactions] = useState([]);
-  const [message, setMessage] = useState(null);
-  const [status, setStatus] = useState(null);
-  const [user, setUser] = useState(null);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const user = useSelector((state) => state.user);
+  const transactions = useSelector((state) => state.transactions);
+  const notification = useSelector((state) => state.notification);
 
   // On page reload:
   useEffect(() => {
     // Grab 'loggeduser' variable from local storage cache
-    const loggedUserJSON = window.localStorage.getItem("loggeduser");
+    if (!user) {
+      const loggedUserJSON = window.localStorage.getItem("loggeduser");
 
-    // If loggeduser exists in local storage
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON); // Parse JSON
-      setUser(user); // Set user state to user stored in cache
-      transactionService.setToken(user.token); // Set token used for transaction APIs
+      // If loggeduser exists in local storage
+      if (loggedUserJSON) {
+        const user = JSON.parse(loggedUserJSON); // Parse JSON
+        dispatch(setUser(user));
+        transactionService.setToken(user.token); // Set token used for transaction APIs
 
-      // Grab transactions of logged in user
-      userService
-        .getTransactions(user.id)
-        .then((transactions) => setTransactions(transactions));
+        // Grab transactions of logged in user
+        userService
+          .getTransactions(user.id)
+          .then((transactions) => dispatch(setTransactions(transactions)));
+      }
     }
-  }, []);
-
-  // Function in charge of displaying notification
-  const displayNotif = (message, status) => {
-    // Set message & status to arguments
-    setMessage(message);
-    setStatus(status);
-
-    // Reset after 5 secods
-    setTimeout(() => {
-      setMessage(null);
-      setStatus(null);
-    }, 5000);
-  };
-
-  const createUser = async (username, password) => {
-    try {
-      await userService.create({ username, password });
-      displayNotif("Successfully created user!", true);
-    } catch (error) {
-      displayNotif(error.response.data.error, false);
-    }
-  };
-
-  const handleLogin = async (username, password) => {
-    try {
-      const user = await loginService.login({ username, password });
-      window.localStorage.setItem("loggeduser", JSON.stringify(user)); // Storage user data in local cache
-      transactionService.setToken(user.token); // Set token in transactionService APIs with token from login
-      setUser(user); // Set 'user' state to returned object
-
-      displayNotif("Successfully logged in!", true);
-
-      // Fetch all transactions of logged in user
-      const userTransactions = await userService.getTransactions(user.id);
-      setTransactions(userTransactions);
-
-      navigate("/dashboard");
-    } catch (error) {
-      displayNotif(error.response.data.error, false);
-    }
-  };
-
-  const handleLogout = (event) => {
-    event.preventDefault();
-
-    setUser(null);
-    window.localStorage.clear();
-
-    navigate("/home");
-  };
-
-  const loginForm = () => (
-    <div>
-      <LoginForm handleLogin={handleLogin} createUser={createUser} />
-    </div>
-  );
+  }, [user, dispatch]);
 
   // Call abstracted components here with notation: {component()}
   return (
     <MantineProvider>
-      <Notification message={message} status={status} />
+      <Notification notification={notification} />
 
       <nav>
         <ul>
@@ -129,15 +78,10 @@ const App = () => {
         <Route
           path="/"
           element={
-            user ? <Navigate to="/dashboard" replace /> : <MainContent />
+            !user ? <MainContent /> : <Navigate to="/dashboard" replace />
           }
         />
-        <Route
-          path="/login"
-          element={
-            <LoginForm handleLogin={handleLogin} createUser={createUser} />
-          }
-        />
+        <Route path="/login" element={<LoginForm />} />
 
         {user && (
           <>
