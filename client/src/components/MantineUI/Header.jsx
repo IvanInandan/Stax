@@ -104,8 +104,12 @@ export default function HeaderMegaMenu() {
               shadow="md"
               withinPortal
             >
+              <a href="#about" className={classes.link}>
+                About
+              </a>
+
               <HoverCard.Target>
-                <a href="#" className={classes.link}>
+                <a href="#features" className={classes.link}>
                   <Center inline>
                     <Box component="span" mr={5}>
                       Features
@@ -118,7 +122,7 @@ export default function HeaderMegaMenu() {
               <HoverCard.Dropdown style={{ overflow: "hidden" }}>
                 <Group justify="space-between" px="md">
                   <Text fw={500}>Features</Text>
-                  <Anchor href="#" fz="xs">
+                  <Anchor component="a" href="#features" fz="xs">
                     View all
                   </Anchor>
                 </Group>
@@ -144,11 +148,11 @@ export default function HeaderMegaMenu() {
                 </div>
               </HoverCard.Dropdown>
             </HoverCard>
-            <a href="#about" className={classes.link}>
-              About
+            <a href="#faq" className={classes.link}>
+              Faq
             </a>
-            <a href="#" className={classes.link}>
-              Academy
+            <a href="#contact" className={classes.link}>
+              Contact
             </a>
           </Group>
 

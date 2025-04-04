@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <Router>
       <MantineProvider
-        theme={{ primaryColor: "green" }}
+        theme={{ primaryColor: "teal" }}
         defaultColorScheme="dark"
       >
         <App />

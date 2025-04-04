@@ -35,17 +35,8 @@ export default function Authentication() {
     if (loginSuccess) {
       navigate("/dashboard");
     } else {
-      toast.error("Failed");
+      toast.error("Login failed: Invalid username or password");
     }
-
-    // Reset fields
-    setUsername("");
-    setPassword("");
-  };
-
-  const newUser = (event) => {
-    event.preventDefault();
-    createUser(username, password);
 
     // Reset fields
     setUsername("");

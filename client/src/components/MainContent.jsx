@@ -12,6 +12,9 @@ const MainContent = () => {
       <section id="hero">
         <Hero />
       </section>
+      <section id="about">
+        <h1>about</h1>
+      </section>
       <section id="features">
         <Features />
       </section>
