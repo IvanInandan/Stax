@@ -1,15 +1,13 @@
 // Import hooks
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 // Import components
-import Togglable from "./components/Togglable";
-import Transaction from "./components/Transaction";
 import Notification from "./components/Notification";
-import TransactionForm from "./components/TransactionForm";
-import Categories from "./components/Categories";
 import LoginForm from "./components/LoginForm";
-import Dashboard from "./components/Dashboard";
 import MainContent from "./components/MainContent";
+import Dashboard from "./components/Dashboard";
+import Settings from "./components/Settings";
+import DashboardLayout from "./components/DashboardLayout";
 
 // Import API services
 import transactionService from "./services/transactions";
@@ -17,17 +15,17 @@ import loginService from "./services/login";
 import userService from "./services/user";
 
 // Import libraries
-import { Link, Routes, Route, useNavigate } from "react-router-dom";
-import { Link as ScrollLink } from "react-scroll";
+import { Link, Routes, Route, useNavigate, Navigate } from "react-router-dom";
+
+// Import Mantine UI
+import "@mantine/core/styles.css";
+import { MantineProvider } from "@mantine/core";
 
 const App = () => {
   const [transactions, setTransactions] = useState([]);
   const [message, setMessage] = useState(null);
   const [status, setStatus] = useState(null);
   const [user, setUser] = useState(null);
-
-  // Declare reference variables
-  const transactionFormRef = useRef();
 
   const navigate = useNavigate();
 
@@ -99,74 +97,20 @@ const App = () => {
     navigate("/home");
   };
 
-  const addTransaction = async (transaction) => {
-    try {
-      const response = await transactionService.create(transaction);
-      setTransactions((oldTransactions) => [...oldTransactions, response]); // Rebuild transactions array and set state
-      transactionFormRef.current.toggleVisibility(); // Toggle visibility of Togglable component
-      displayNotif("Successfully added transaction!", true);
-    } catch (error) {
-      displayNotif(error.response.data.error, false);
-    }
-  };
-
-  const deleteTransaction = async (id) => {
-    try {
-      const response = await transactionService.remove(id);
-      setTransactions((oldTransactions) =>
-        oldTransactions.filter((transaction) => transaction.id !== id)
-      );
-      displayNotif("Successfully deleted transaction!", true);
-    } catch (error) {
-      displayNotif(error.response.data.error, false);
-    }
-  };
-
   const loginForm = () => (
     <div>
       <LoginForm handleLogin={handleLogin} createUser={createUser} />
     </div>
   );
 
-  // Abstracted transactionList into own 'component'
-  const transactionList = () => {
-    const total = transactions.reduce((count, transaction) => {
-      return count + Number(transaction.amount);
-    }, 0);
-
-    return (
-      <div>
-        <h1>Transactions</h1>
-        <h2>Total: ${total}</h2>
-        {transactions.map((transaction, index) => (
-          <Transaction
-            key={transaction.id}
-            transaction={transaction}
-            deleteTransaction={deleteTransaction}
-          />
-        ))}
-      </div>
-    );
-  };
-
-  // Abstracted transactionForm into own 'component'
-  const transactionForm = () => (
-    <Togglable buttonLabel="add transaction" ref={transactionFormRef}>
-      <TransactionForm
-        addTransaction={addTransaction}
-        transactions={transactions}
-      />
-    </Togglable>
-  );
-
   // Call abstracted components here with notation: {component()}
   return (
-    <div className="page">
+    <MantineProvider>
       <Notification message={message} status={status} />
 
       <nav>
         <ul>
-          {!user ? (
+          {!user && (
             <>
               <div className="home-nav">
                 <li>
@@ -177,38 +121,46 @@ const App = () => {
                 </li>
               </div>
             </>
-          ) : (
-            <>
-              <li>
-                <Link to="/dashboard">Dashboard</Link>
-              </li>
-              <li>
-                <button onClick={handleLogout}>Logout</button>
-              </li>
-            </>
           )}
         </ul>
       </nav>
 
       <Routes>
-        <Route path="/" element={<MainContent />} />
+        <Route
+          path="/"
+          element={
+            user ? <Navigate to="/dashboard" replace /> : <MainContent />
+          }
+        />
         <Route
           path="/login"
           element={
             <LoginForm handleLogin={handleLogin} createUser={createUser} />
           }
         />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
 
-      {user && (
-        <div>
-          {transactionList()}
-          {transactionForm()}
-          <Categories transactions={transactions} />
-        </div>
-      )}
-    </div>
+        {user && (
+          <>
+            <Route
+              path="/dashboard"
+              element={
+                <DashboardLayout>
+                  <Dashboard transactions={transactions} />
+                </DashboardLayout>
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <DashboardLayout>
+                  <Settings />
+                </DashboardLayout>
+              }
+            />
+          </>
+        )}
+      </Routes>
+    </MantineProvider>
   );
 };
 
