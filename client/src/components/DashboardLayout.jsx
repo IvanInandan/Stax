@@ -1,5 +1,5 @@
 // components/DashboardLayout.jsx
-import Navbar from "./Navbar";
+import Navbar from "./MantineUI/Navbar";
 
 export default function DashboardLayout({ children }) {
   return (

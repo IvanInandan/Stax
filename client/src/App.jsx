@@ -17,16 +17,11 @@ import transactionService from "./services/transactions";
 import userService from "./services/user";
 
 // Import libraries
-import { Link, Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import { Link, Routes, Route, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
-// Import Mantine UI
-import "@mantine/core/styles.css";
-import { MantineProvider } from "@mantine/core";
 
 const App = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const user = useSelector((state) => state.user);
   const transactions = useSelector((state) => state.transactions);
@@ -54,7 +49,7 @@ const App = () => {
 
   // Call abstracted components here with notation: {component()}
   return (
-    <MantineProvider>
+    <>
       <Notification notification={notification} />
 
       <nav>
@@ -104,7 +99,7 @@ const App = () => {
           </>
         )}
       </Routes>
-    </MantineProvider>
+    </>
   );
 };
 

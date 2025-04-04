@@ -2,7 +2,7 @@ import {
   findCategories,
   categoryTotal,
   calcPercent,
-} from "../helper/transactionFuncs";
+} from "../helper/transactionFuncs.js";
 
 const Categories = ({ transactions }) => {
   const totalSpendings = transactions.reduce((acc, transaction) => {
