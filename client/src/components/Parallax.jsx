@@ -43,14 +43,14 @@ const Parallax = () => {
           backgroundPosition: "center bottom",
           backgroundSize: "130%",
           backgroundRepeat: "no-repeat",
-          y: textY,
+          y: yTransformLayer0,
         }}
       />
 
       <motion.div
         className="absolute inset-0 flex items-start justify-center pt-60 z-3"
         style={{
-          y: useTransform(scrollYProgress, [0, 1], [0, 1200]),
+          y: textY,
         }}
       >
         <h1 className="font-bold text-white text-7xl md:text-9xl">Pennywise</h1>
