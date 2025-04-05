@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -55,10 +59,16 @@ nav a:hover {
   color: black;
 }
 
+/*
 #hero {
   display: flex;
   justify-content: flex-start;
   padding-left: 7rem;
+
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
 }
 
 #hero > * {
@@ -73,3 +83,49 @@ nav a:hover {
   padding-top: calc(var(--mantine-spacing-xl) * 2);
   padding-bottom: calc(var(--mantine-spacing-xl) * 2);
 }
+
+#faq {
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
+}
+*/
+
+/* ---------------------- */
+/* Night Mode Button */
+
+.toggleTheme {
+  background-color: transparent;
+  color: #333;
+  padding: 10px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggleTheme:hover {
+  cursor: pointer;
+  color: #fff;
+}
+
+.toggleTheme:hover::after {
+  transform: translate(-50%, -50%);
+  animation: glow 1.5s infinite ease-in-out;
+}
+
+@keyframes glow {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ---------------------- */

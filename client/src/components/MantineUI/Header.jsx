@@ -6,6 +6,8 @@ import {
   IconCoin,
   IconFingerprint,
   IconNotification,
+  IconMoon,
+  IconMoonFilled,
 } from "@tabler/icons-react";
 import {
   Anchor,
@@ -25,6 +27,7 @@ import {
   UnstyledButton,
   useMantineTheme,
   Modal,
+  useMantineColorScheme,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { MantineLogo } from "@mantinex/mantine-logo";
@@ -68,6 +71,8 @@ const mockdata = [
 ];
 
 export default function Header() {
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
 
@@ -94,14 +99,36 @@ export default function Header() {
     </UnstyledButton>
   ));
 
+  const scrollTo = (sectionId) => {
+    console.log("Scrolling to: ", sectionId);
+    document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <Box pb={120}>
+    <Box pb={0}>
       <header className={classes.header}>
-        <Group justify="space-between" h="100%">
+        <Group
+          justify="space-between"
+          h="100%"
+          style={{
+            display: "flex",
+            width: "100%",
+            position: "relative",
+          }}
+        >
           <MantineLogo size={30} />
 
-          <Group h="100%" gap={0} visibleFrom="sm">
-            <a href="#" className={classes.link}>
+          <Group
+            h="100%"
+            gap={0}
+            visibleFrom="sm"
+            style={{
+              position: "absolute", // Position it absolutely within the header
+              left: "50%", // Start at the middle of the header
+              transform: "translateX(-50%)", // Offset it to truly center it
+            }}
+          >
+            <a onClick={() => scrollTo("hero")} className={classes.link}>
               Home
             </a>
             <HoverCard
@@ -111,12 +138,11 @@ export default function Header() {
               shadow="md"
               withinPortal
             >
-              <a href="#about" className={classes.link}>
-                About
-              </a>
-
               <HoverCard.Target>
-                <a href="#features" className={classes.link}>
+                <a
+                  onClick={() => scrollTo("features")}
+                  className={classes.link}
+                >
                   <Center inline>
                     <Box component="span" mr={5}>
                       Features
@@ -155,15 +181,34 @@ export default function Header() {
                 </div>
               </HoverCard.Dropdown>
             </HoverCard>
-            <a href="#faq" className={classes.link}>
+            <a onClick={() => scrollTo("about")} className={classes.link}>
+              About
+            </a>
+            <a onClick={() => scrollTo("faq")} className={classes.link}>
               Faq
             </a>
-            <a href="#contact" className={classes.link}>
+            <a onClick={() => scrollTo("contact")} className={classes.link}>
               Contact
             </a>
           </Group>
 
           <Group visibleFrom="sm">
+            <a
+              style={{ display: "flex" }}
+              className="toggleTheme"
+              onClick={toggleColorScheme}
+            >
+              {colorScheme === "dark" ? (
+                <>
+                  <IconMoonFilled className={classes.linkIcon} stroke={1.5} />
+                </>
+              ) : (
+                <>
+                  <IconMoon className={classes.linkIcon} stroke={1.5} />
+                </>
+              )}
+            </a>
+
             <Modal
               classNames={{
                 content: classes.loginWindow,

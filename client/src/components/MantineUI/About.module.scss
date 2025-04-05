@@ -7,10 +7,6 @@ $mantine-breakpoint-xl: 1400px;
 .wrapper {
   display: flex;
   align-items: center;
-  padding-left: calc(var(--mantine-spacing-xl) * 4);
-  padding-right: calc(var(--mantine-spacing-xl) * 4);
-  padding-top: calc(var(--mantine-spacing-xl) * 2);
-  padding-bottom: calc(var(--mantine-spacing-xl) * 2);
   border-radius: var(--mantine-radius-md);
   background-color: light-dark(
     var(--mantine-color-white),
@@ -35,7 +31,7 @@ $mantine-breakpoint-xl: 1400px;
 }
 
 .body {
-  padding-right: calc(var(--mantine-spacing-xl) * 4);
+  padding-right: calc(var(--mantine-spacing-xl) * 2);
 
   @media (max-width: $mantine-breakpoint-sm) {
     padding-right: 0;

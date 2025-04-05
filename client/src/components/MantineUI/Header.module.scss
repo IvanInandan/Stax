@@ -28,13 +28,14 @@ $mantine-breakpoint-xl: 1400px;
   z-index: 1000; /* Ensures the header stays on top of other elements */
   padding-left: var(--mantine-spacing-md);
   padding-right: var(--mantine-spacing-md);
-  border-bottom: 1px solid
-    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for better visibility */
-  background-color: light-dark(
-    var(--mantine-color-gray-0),
-    var(--mantine-color-dark-7)
-  );
+  //
+  //border-bottom: 1px solid
+  //  light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  //background-color: light-dark(
+  //  var(--mantine-color-gray-0),
+  //  var(--mantine-color-dark-7)
+  //);
+  //box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for better visibility */
 }
 
 .link {

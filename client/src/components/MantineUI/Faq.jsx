@@ -1,18 +1,29 @@
 import { Accordion, Container, Grid, Image, Title } from "@mantine/core";
 import image from "../../img/faq.svg";
 import classes from "./Faq.module.scss";
+import { div } from "motion/react-client";
 
 const placeholder = "Insert text here";
 
 export default function Faq() {
   return (
     <div className={classes.wrapper}>
-      <Container size="lg">
-        <Grid id="faq-grid" gutter={50}>
-          <Grid.Col span={{ base: 12, md: 6 }}>
-            <Image src={image} alt="Frequently Asked Questions" />
-          </Grid.Col>
-          <Grid.Col span={{ base: 12, md: 6 }}>
+      <Grid id="faq-grid" gutter={50}>
+        <Grid.Col
+          span={{ base: 12, md: 6 }}
+          className="w-full flex items-center justify-center"
+        >
+          <Image
+            src={image}
+            alt="Frequently Asked Questions"
+            className="w-full h-auto"
+          />
+        </Grid.Col>
+        <Grid.Col
+          span={{ base: 12, md: 6 }}
+          className="flex items-center justify-center"
+        >
+          <div className="w-full">
             <Title order={2} ta="left" className={classes.title}>
               Frequently Asked Questions
             </Title>
@@ -46,9 +57,9 @@ export default function Faq() {
                 <Accordion.Panel>{placeholder}</Accordion.Panel>
               </Accordion.Item>
             </Accordion>
-          </Grid.Col>
-        </Grid>
-      </Container>
+          </div>
+        </Grid.Col>
+      </Grid>
     </div>
   );
 }

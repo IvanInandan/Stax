@@ -25,9 +25,7 @@ const data = [
 ];
 
 export default function Dashboard() {
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme({
-    keepTransitions: true,
-  });
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   const [active, setActive] = useState("Dashboard");
   const navigate = useNavigate();
