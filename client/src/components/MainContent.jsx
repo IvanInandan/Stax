@@ -1,25 +1,24 @@
+import Nav from "./MantineUI/Nav";
 import Header from "./MantineUI/Header";
-import Hero from "./MantineUI/Hero";
 import About from "./MantineUI/About";
 import Features from "./MantineUI/Features";
 import Faq from "./MantineUI/Faq";
 import Contact from "./MantineUI/Contact";
 import Footer from "./MantineUI/Footer";
-import Parallax from "./Parallax";
+import Hero from "./Hero";
 
 const MainContent = () => {
   return (
     <div>
-      <Header />
-
-      <Parallax />
+      <Nav />
+      <Hero />
 
       <section
         id="hero"
-        className="h-screen flex justify-start items-center p-10"
+        className="h-screen flex justify-start items-center p-10 bg-cyan-700"
       >
         <div className="w-full flex justify-start">
-          <Hero />
+          <Header />
         </div>
       </section>
 

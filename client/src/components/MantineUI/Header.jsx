@@ -1,300 +1,75 @@
+import { IconCheck } from "@tabler/icons-react";
 import {
-  IconBook,
-  IconChartPie3,
-  IconChevronDown,
-  IconCode,
-  IconCoin,
-  IconFingerprint,
-  IconNotification,
-  IconMoon,
-  IconMoonFilled,
-} from "@tabler/icons-react";
-import {
-  Anchor,
-  Box,
-  Burger,
   Button,
-  Center,
-  Collapse,
-  Divider,
-  Drawer,
+  Container,
   Group,
-  HoverCard,
-  ScrollArea,
-  SimpleGrid,
+  Image,
+  List,
   Text,
   ThemeIcon,
-  UnstyledButton,
-  useMantineTheme,
-  Modal,
-  useMantineColorScheme,
+  Title,
 } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import { MantineLogo } from "@mantinex/mantine-logo";
-
+import image from "../../img/hero.svg";
 import classes from "./Header.module.scss";
-import { Link } from "react-router-dom";
+import { div } from "motion/react-client";
 
-import Authentication from "./Authentication";
-
-const mockdata = [
-  {
-    icon: IconCode,
-    title: "Open source",
-    description: "This Pokémon’s cry is very loud and distracting",
-  },
-  {
-    icon: IconCoin,
-    title: "Free for everyone",
-    description: "The fluid of Smeargle’s tail secretions changes",
-  },
-  {
-    icon: IconBook,
-    title: "Documentation",
-    description: "Yanma is capable of seeing 360 degrees without",
-  },
-  {
-    icon: IconFingerprint,
-    title: "Security",
-    description: "The shell’s rounded shape and the grooves on its.",
-  },
-  {
-    icon: IconChartPie3,
-    title: "Analytics",
-    description: "This Pokémon uses its flying ability to quickly chase",
-  },
-  {
-    icon: IconNotification,
-    title: "Notifications",
-    description: "Combusken battles with the intensely hot flames it spews",
-  },
-];
-
-export default function Header() {
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-
-  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
-    useDisclosure(false);
-
-  const [opened, { open, close }] = useDisclosure(false);
-
-  const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
-  const theme = useMantineTheme();
-
-  const links = mockdata.map((item) => (
-    <UnstyledButton className={classes.subLink} key={item.title}>
-      <Group wrap="nowrap" align="flex-start">
-        <ThemeIcon size={34} variant="default" radius="md">
-          <item.icon size={22} color={theme.colors.blue[6]} />
-        </ThemeIcon>
-        <div>
-          <Text size="sm" fw={500}>
-            {item.title}
-          </Text>
-          <Text size="xs" c="dimmed">
-            {item.description}
-          </Text>
-        </div>
-      </Group>
-    </UnstyledButton>
-  ));
-
-  const scrollTo = (sectionId) => {
-    console.log("Scrolling to: ", sectionId);
-    document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
-  };
-
+export default function Hero() {
   return (
-    <Box pb={0}>
-      <header className={classes.header}>
-        <Group
-          justify="space-between"
-          h="100%"
-          style={{
-            display: "flex",
-            width: "100%",
-            position: "relative",
-          }}
+    <div className={classes.inner}>
+      <div className={classes.content}>
+        <Title className={classes.title}>
+          A <span className={classes.highlight}>modern</span> all-in-one <br />{" "}
+          finance application
+        </Title>
+        <Text c="dimmed" mt="md">
+          Build fully functional accessible web applications faster than ever –
+          Mantine includes more than 120 customizable components and hooks to
+          cover you in any situation
+        </Text>
+
+        <List
+          mt={30}
+          spacing="sm"
+          size="sm"
+          icon={
+            <ThemeIcon size={20} radius="xl">
+              <IconCheck size={12} stroke={1.5} />
+            </ThemeIcon>
+          }
         >
-          <MantineLogo size={30} />
+          <List.Item>
+            <b>TypeScript based</b> – build type safe applications, all
+            components and hooks export types
+          </List.Item>
+          <List.Item>
+            <b>Free and open source</b> – all packages have MIT license, you can
+            use Mantine in any project
+          </List.Item>
+          <List.Item>
+            <b>No annoying focus ring</b> – focus ring will appear only when
+            user navigates with keyboard
+          </List.Item>
+        </List>
 
-          <Group
-            h="100%"
-            gap={0}
-            visibleFrom="sm"
-            style={{
-              position: "absolute", // Position it absolutely within the header
-              left: "50%", // Start at the middle of the header
-              transform: "translateX(-50%)", // Offset it to truly center it
-            }}
+        <Group mt={30}>
+          <Button radius="xl" size="md" className={classes.control}>
+            Get started
+          </Button>
+          <Button
+            variant="default"
+            radius="xl"
+            size="md"
+            className={classes.control}
+            component="a"
+            href="https://github.com/IvanInandan/wallet-watcher"
+            target="_blank"
           >
-            <a onClick={() => scrollTo("hero")} className={classes.link}>
-              Home
-            </a>
-            <HoverCard
-              width={600}
-              position="bottom"
-              radius="md"
-              shadow="md"
-              withinPortal
-            >
-              <HoverCard.Target>
-                <a
-                  onClick={() => scrollTo("features")}
-                  className={classes.link}
-                >
-                  <Center inline>
-                    <Box component="span" mr={5}>
-                      Features
-                    </Box>
-                    <IconChevronDown size={16} color={theme.colors.blue[6]} />
-                  </Center>
-                </a>
-              </HoverCard.Target>
-
-              <HoverCard.Dropdown style={{ overflow: "hidden" }}>
-                <Group justify="space-between" px="md">
-                  <Text fw={500}>Features</Text>
-                  <Anchor component="a" href="#features" fz="xs">
-                    View all
-                  </Anchor>
-                </Group>
-
-                <Divider my="sm" />
-
-                <SimpleGrid cols={2} spacing={0}>
-                  {links}
-                </SimpleGrid>
-
-                <div className={classes.dropdownFooter}>
-                  <Group justify="space-between">
-                    <div>
-                      <Text fw={500} fz="sm">
-                        Get started
-                      </Text>
-                      <Text size="xs" c="dimmed">
-                        Their food sources have decreased, and their numbers
-                      </Text>
-                    </div>
-                    <Button variant="default">Get started</Button>
-                  </Group>
-                </div>
-              </HoverCard.Dropdown>
-            </HoverCard>
-            <a onClick={() => scrollTo("about")} className={classes.link}>
-              About
-            </a>
-            <a onClick={() => scrollTo("faq")} className={classes.link}>
-              Faq
-            </a>
-            <a onClick={() => scrollTo("contact")} className={classes.link}>
-              Contact
-            </a>
-          </Group>
-
-          <Group visibleFrom="sm">
-            <a
-              style={{ display: "flex" }}
-              className="toggleTheme"
-              onClick={toggleColorScheme}
-            >
-              {colorScheme === "dark" ? (
-                <>
-                  <IconMoonFilled className={classes.linkIcon} stroke={1.5} />
-                </>
-              ) : (
-                <>
-                  <IconMoon className={classes.linkIcon} stroke={1.5} />
-                </>
-              )}
-            </a>
-
-            <Modal
-              classNames={{
-                content: classes.loginWindow,
-              }}
-              styles={{
-                header: {
-                  padding: 0,
-                  margin: 0,
-                  height: 0,
-                  minHeight: 0,
-                },
-                title: {
-                  display: "none",
-                },
-              }}
-              closeButtonProps={{
-                style: {
-                  top: 10,
-                  right: 10,
-                  position: "absolute",
-                },
-              }}
-              size="md"
-              opened={opened}
-              onClose={close}
-              centered
-            >
-              <Authentication />
-            </Modal>
-
-            <Button variant="default" onClick={open}>
-              Log in
-            </Button>
-
-            <Link to="/register">
-              <Button>Sign up</Button>
-            </Link>
-          </Group>
-
-          <Burger
-            opened={drawerOpened}
-            onClick={toggleDrawer}
-            hiddenFrom="sm"
-          />
+            Source code
+          </Button>
         </Group>
-      </header>
+      </div>
 
-      <Drawer
-        opened={drawerOpened}
-        onClose={closeDrawer}
-        size="100%"
-        padding="md"
-        title="Navigation"
-        hiddenFrom="sm"
-        zIndex={1000000}
-      >
-        <ScrollArea h="calc(100vh - 80px" mx="-md">
-          <Divider my="sm" />
-          <a href="#" className={classes.link}>
-            Home
-          </a>
-
-          <UnstyledButton className={classes.link} onClick={toggleLinks}>
-            <Center inline>
-              <Box component="span" mr={5}>
-                Features
-              </Box>
-              <IconChevronDown size={16} color={theme.colors.blue[6]} />
-            </Center>
-          </UnstyledButton>
-          <Collapse in={linksOpened}>{links}</Collapse>
-          <a href="#" className={classes.link}>
-            Learn
-          </a>
-          <a href="#" className={classes.link}>
-            Academy
-          </a>
-
-          <Divider my="sm" />
-
-          <Group justify="center" grow pb="xl" px="md">
-            <Button variant="default">Log in</Button>
-            <Button>Sign up</Button>
-          </Group>
-        </ScrollArea>
-      </Drawer>
-    </Box>
+      <Image src={image} className={classes.image} />
+    </div>
   );
 }

@@ -22,9 +22,9 @@ const Parallax = () => {
   const yTransformLayer0 = useTransform(scrollYProgress, [0, 1], [0, -15]); // Slowest layer (back-most)
   const yTransformLayer1 = useTransform(scrollYProgress, [0, 1], [0, -30]);
   const yTransformLayer2 = useTransform(scrollYProgress, [0, 1], [0, -60]);
-  const yTransformLayer3 = useTransform(scrollYProgress, [0, 1], [0, -90]);
-  const yTransformLayer4 = useTransform(scrollYProgress, [0, 1], [0, -160]);
-  const yTransformLayer5 = useTransform(scrollYProgress, [0, 1], [0, -280]);
+  const yTransformLayer3 = useTransform(scrollYProgress, [0, 1], [0, -140]);
+  const yTransformLayer4 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const yTransformLayer5 = useTransform(scrollYProgress, [0, 1], [0, -320]);
   const yTransformLayer6 = useTransform(scrollYProgress, [0, 1], [0, -540]); // Front-most layer moves fastest
 
   return (
