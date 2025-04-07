@@ -1,6 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion"; // Correct import
 import React, { useRef } from "react";
 
+import { useMantineColorScheme } from "@mantine/core";
+
 import p0 from "../img/parallax-0.png"; // Back-most
 import p1 from "../img/parallax-1.png";
 import p2 from "../img/parallax-2.png";
@@ -10,15 +12,21 @@ import p5 from "../img/parallax-5.png";
 import p6 from "../img/parallax-6.png"; //Front-most
 
 const Parallax = () => {
+  const { colorScheme } = useMantineColorScheme();
+
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
 
-  const textY = useTransform(scrollYProgress, [0, 1], [0, 1200]);
-
   // Define varying scroll speeds for different layers
+  const yTransformText = useTransform(scrollYProgress, [0, 1], [0, 1200]);
+  const yTransformCover = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["100%", "35%"]
+  );
   const yTransformLayer0 = useTransform(scrollYProgress, [0, 1], [0, -15]); // Slowest layer (back-most)
   const yTransformLayer1 = useTransform(scrollYProgress, [0, 1], [0, -30]);
   const yTransformLayer2 = useTransform(scrollYProgress, [0, 1], [0, -60]);
@@ -27,12 +35,25 @@ const Parallax = () => {
   const yTransformLayer5 = useTransform(scrollYProgress, [0, 1], [0, -320]);
   const yTransformLayer6 = useTransform(scrollYProgress, [0, 1], [0, -540]); // Front-most layer moves fastest
 
+  const sky = colorScheme === "dark" ? "#1E2A33" : "#FEDCC8";
+  const nightFilter = "brightness(0.8) contrast(1.05) hue-rotate(3deg)";
+  const nightTransition = 0.75;
+
   return (
     <div ref={ref} className="w-screen h-screen overflow-hidden relative z-0">
       {/* Static background behind all parallax layers */}
       <motion.div
         className="w-screen h-screen absolute inset-0 bottom-0 z-1"
-        style={{ backgroundColor: "#FEDCC8" }}
+        style={{}}
+        animate={{ backgroundColor: sky }}
+        transition={{ duration: nightTransition }}
+      />
+
+      <motion.div
+        className="absolute inset-0 z-20 bg-blue-950"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: colorScheme === "dark" ? 0.1 : 0 }}
+        transition={{ duration: nightTransition }}
       />
 
       {/* Parallax image layers with varying speeds */}
@@ -45,12 +66,17 @@ const Parallax = () => {
           backgroundRepeat: "no-repeat",
           y: yTransformLayer0,
         }}
+        animate={{
+          filter: colorScheme === "dark" ? nightFilter : "none",
+          opacity: colorScheme === "dark" ? 0 : 1,
+        }}
+        transition={{ duration: nightTransition }}
       />
 
       <motion.div
         className="absolute inset-0 flex items-start justify-center pt-60 z-3"
         style={{
-          y: textY,
+          y: yTransformText,
         }}
       >
         <h1 className="font-bold text-white text-7xl md:text-9xl">Pennywise</h1>
@@ -65,6 +91,11 @@ const Parallax = () => {
           backgroundRepeat: "no-repeat",
           y: yTransformLayer1,
         }}
+        animate={{
+          filter:
+            colorScheme === "dark" ? `${nightFilter} blur(0.7px)` : "none",
+        }}
+        transition={{ duration: nightTransition }}
       />
 
       <motion.div
@@ -76,6 +107,11 @@ const Parallax = () => {
           backgroundRepeat: "no-repeat",
           y: yTransformLayer2,
         }}
+        animate={{
+          filter:
+            colorScheme === "dark" ? `${nightFilter} blur(0.6px)` : "none",
+        }}
+        transition={{ duration: nightTransition }}
       />
 
       <motion.div
@@ -87,6 +123,11 @@ const Parallax = () => {
           backgroundRepeat: "no-repeat",
           y: yTransformLayer3,
         }}
+        animate={{
+          filter:
+            colorScheme === "dark" ? `${nightFilter} blur(0.5px)` : "none",
+        }}
+        transition={{ duration: nightTransition }}
       />
 
       <motion.div
@@ -98,6 +139,11 @@ const Parallax = () => {
           backgroundRepeat: "no-repeat",
           y: yTransformLayer4,
         }}
+        animate={{
+          filter:
+            colorScheme === "dark" ? `${nightFilter} blur(0.4px)` : "none",
+        }}
+        transition={{ duration: nightTransition }}
       />
 
       <motion.div
@@ -109,6 +155,11 @@ const Parallax = () => {
           backgroundRepeat: "no-repeat",
           y: yTransformLayer5,
         }}
+        animate={{
+          filter:
+            colorScheme === "dark" ? `${nightFilter} blur(0.3px)` : "none",
+        }}
+        transition={{ duration: nightTransition }}
       />
 
       <motion.div
@@ -120,6 +171,11 @@ const Parallax = () => {
           backgroundRepeat: "no-repeat",
           y: yTransformLayer6,
         }}
+        animate={{
+          filter:
+            colorScheme === "dark" ? `${nightFilter} blur(0.2px)` : "none",
+        }}
+        transition={{ duration: nightTransition }}
       />
 
       {/* Parallax "cover" to mask separating layers on bottom */}
@@ -127,8 +183,10 @@ const Parallax = () => {
         className="absolute inset-0 z-10"
         style={{
           background: "#2D112B",
-          y: useTransform(scrollYProgress, [0, 1], ["100%", "35%"]), // scrolls down to cover
+          y: yTransformCover,
         }}
+        animate={{ filter: colorScheme === "dark" ? nightFilter : "none" }}
+        transition={{ duration: nightTransition }}
       />
     </div>
   );
