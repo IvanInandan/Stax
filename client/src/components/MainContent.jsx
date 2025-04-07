@@ -30,11 +30,20 @@ const MainContent = () => {
   const bg5 = colorScheme === "light" ? "#ff6d40" : "#ba512e";
   const bg6 = colorScheme === "light" ? "#ff7f4a" : "#bb5f37";
 
+  // Attach ref to DOM element to track position on screen
   const ref = useRef(null);
+
+  // Returns a value from 0 -> 1 where it tracks ref from 'start-end' to 'end-start'
+  // In offset: "target obj, viewport" --> "start end" means when the start (top) of the target obj (ref) hits the end (bottom) of the viewport
+  // offset: ["start end", "end start"] --> [0, 1] --> scrollYProgress starts (0) at "start end" and finishes (1) at "end start"
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
+
+  // useTransform hook dynamically adjusts opacity value based off of scrollYProgress.
+  // [0, 0.5] represents the value of scrollYProgress, [1, 0] represents the value of opacity
+  // Opacity will be 1 at scrollYProgress === 0, and 0 at scrollYProgress === 0.5. It will also fill in all the values in between, but has these as target values
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
@@ -53,10 +62,10 @@ const MainContent = () => {
       {/* Dummy div thats screen sized. Since on top of hero on load since hero is position fixed. They are the same size */}
       {/* Used to fill space so div below in charge of scroll animation doesn't trigger right away */}
       {/* [HERO/dummydiv] --1vh--> [scroll trigger div] --1vh--> [first section] */}
-      <div className="h-screen" />
+      <div className="h-screen relative" />
 
       {/* Screen sized div between hero and first section to trigger scroll animation of fading background */}
-      <div ref={ref} className="h-screen" />
+      <div ref={ref} className="h-screen relative" />
 
       <section
         id="header"
