@@ -3,6 +3,8 @@ import React, { useRef } from "react";
 
 import { useMantineColorScheme } from "@mantine/core";
 
+import Reveal from "./HeroReveal";
+
 import p0 from "../img/parallax-0.png"; // Back-most
 import p1 from "../img/parallax-1.png";
 import p2 from "../img/parallax-2.png";
@@ -21,7 +23,8 @@ const Parallax = () => {
   });
 
   // Define varying scroll speeds for different layers
-  const yTransformText = useTransform(scrollYProgress, [0, 1], [0, 1200]);
+  const yTransformText = useTransform(scrollYProgress, [0, 1], [0, 600]);
+  const scaleTransformText = useTransform(scrollYProgress, [0, 1], [1, 0]);
   const yTransformCover = useTransform(
     scrollYProgress,
     [0, 1],
@@ -74,12 +77,15 @@ const Parallax = () => {
       />
 
       <motion.div
-        className="absolute inset-0 flex items-start justify-center pt-60 z-3"
+        className="absolute inset-0 flex justify-center items-start pt-64 z-3"
         style={{
           y: yTransformText,
+          scale: scaleTransformText,
         }}
       >
-        <h1 className="font-bold text-white text-7xl md:text-9xl">Pennywise</h1>
+        <Reveal>
+          <h1 className="font-bold text-white text-7xl md:text-9xl">Stacks</h1>
+        </Reveal>
       </motion.div>
 
       <motion.div

@@ -16,7 +16,7 @@ import Faq from "./MantineUI/Faq";
 import Contact from "./MantineUI/Contact";
 import Footer from "./MantineUI/Footer";
 import Hero from "./Hero";
-import Reveal from "./Reveal";
+import Reveal from "./TextReveal";
 
 const MainContent = () => {
   const { colorScheme } = useMantineColorScheme();
@@ -31,25 +31,40 @@ const MainContent = () => {
   const bg6 = colorScheme === "light" ? "#ff7f4a" : "#bb5f37";
 
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref });
-  const scrollOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
     <div>
       <Nav />
 
-      <section id="hero">
+      <motion.section
+        ref={ref}
+        id="hero"
+        className="h-screen fixed"
+        style={{ opacity }}
+      >
         <Hero />
-      </section>
+      </motion.section>
 
-      <div className="h-screen w-screen" style={{ backgroundColor: fg }} />
+      {/* Dummy div thats screen sized. Since on top of hero on load since hero is position fixed. They are the same size */}
+      {/* Used to fill space so div below in charge of scroll animation doesn't trigger right away */}
+      {/* [HERO/dummydiv] --1vh--> [scroll trigger div] --1vh--> [first section] */}
+      <div className="h-screen" />
+
+      {/* Screen sized div between hero and first section to trigger scroll animation of fading background */}
+      <div ref={ref} className="h-screen" />
 
       <section
-        ref={ref}
         id="header"
-        className="h-screen w-screen flex justify-start items-center p-10"
+        className="h-screen w-screen flex justify-start items-center p-10 z-20"
       >
-        <Header />
+        <Reveal>
+          <Header />
+        </Reveal>
       </section>
 
       <section

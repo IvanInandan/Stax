@@ -11,7 +11,7 @@ import {
 } from "@mantine/core";
 import image from "../../img/hero.svg";
 import classes from "./Header.module.scss";
-import Reveal from "../Reveal";
+import Reveal from "../HeroReveal";
 
 export default function Hero() {
   return (

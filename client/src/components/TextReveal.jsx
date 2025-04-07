@@ -19,10 +19,10 @@ const Reveal = ({ children }) => {
   return (
     <div
       ref={ref}
-      className="relative w-fit overflow-hidden"
+      className="relative w-fit"
       // Position: 'relative' allows sliding cover to position itself 'absolutely' relative to this container
       // Width: 'fit-content' sets the container width to exact bounds of child content
-      // Overflow: 'hidden' is preventative to prevent sliding cover to escape outside of bounds
+      // Overflow: 'hidden' is preventative to prevent sliding cover to escape outside of bounds **
     >
       {/* Content */}
       <motion.div
