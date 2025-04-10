@@ -20,7 +20,7 @@ const links = [
 export default function Footer() {
   const items = links.map((link) => (
     <Anchor
-      c="dimmed"
+      className="text-gray-400"
       key={link.label}
       href={link.link}
       lh={1}
@@ -34,20 +34,30 @@ export default function Footer() {
   return (
     <div className={classes.footer}>
       <div className={classes.inner}>
-        <MantineLogo size={28} />
+        <MantineLogo size={28} className="text-white" />
 
         <Group className={classes.links}>{items}</Group>
 
-        <Group gap="xs" justify="flex-end" wrap="nowrap">
-          <ActionIcon size="lg" variant="default" radius="xl">
+        <Group gap="sm" justify="flex-end" wrap="nowrap">
+          <ActionIcon
+            size="lg"
+            //variant="default"
+            radius="xl"
+            className="bg-gray-200"
+          >
             <a href="https://www.linkedin.com/in/ivaninandan/">
-              <IconBrandLinkedin size={18} stroke={1.5} color="white" />
+              <IconBrandLinkedin size={18} stroke={1.5} color="black" />
             </a>
           </ActionIcon>
 
-          <ActionIcon size="lg" variant="default" radius="xl">
+          <ActionIcon
+            size="lg"
+            //variant="default"
+            radius="xl"
+            className="bg-gray-200"
+          >
             <a href="https://github.com/IvanInandan/">
-              <IconBrandGithub size={18} stroke={1.5} color="white" />
+              <IconBrandGithub size={18} stroke={1.5} color="black" />
             </a>
           </ActionIcon>
         </Group>

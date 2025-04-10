@@ -1,12 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useMantineColorScheme } from "@mantine/core";
-import {
-  motion,
-  useScroll,
-  useMotionValueEvent,
-  useInView,
-  useTransform,
-} from "motion/react";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 import Nav from "./MantineUI/Nav";
 import Header from "./MantineUI/Header";
@@ -19,17 +12,6 @@ import Hero from "./Hero";
 import Reveal from "./TextReveal";
 
 const MainContent = () => {
-  const { colorScheme } = useMantineColorScheme();
-
-  const bg = colorScheme === "light" ? "#F8DDCB" : "#1F2935";
-  const fg = colorScheme === "light" ? "#2c122b" : "#200b22";
-  const bg1 = colorScheme === "light" ? "#530031" : "#3d0025";
-  const bg2 = colorScheme === "light" ? "#7e0032" : "#5c0226";
-  const bg3 = colorScheme === "light" ? "#ca293e" : "#951d2e";
-  const bg4 = colorScheme === "light" ? "#ff583d" : "#bb432c";
-  const bg5 = colorScheme === "light" ? "#ff6d40" : "#ba512e";
-  const bg6 = colorScheme === "light" ? "#ff7f4a" : "#bb5f37";
-
   // Attach ref to DOM element to track position on screen
   const ref = useRef(null);
 
@@ -50,6 +32,7 @@ const MainContent = () => {
     <div>
       <Nav />
 
+      <div id="hero" />
       <motion.section
         ref={ref}
         id="hero"
@@ -62,10 +45,10 @@ const MainContent = () => {
       {/* Dummy div thats screen sized. Since on top of hero on load since hero is position fixed. They are the same size */}
       {/* Used to fill space so div below in charge of scroll animation doesn't trigger right away */}
       {/* [HERO/dummydiv] --1vh--> [scroll trigger div] --1vh--> [first section] */}
-      <div className="h-screen relative" />
+      <div className="h-screen" />
 
       {/* Screen sized div between hero and first section to trigger scroll animation of fading background */}
-      <div ref={ref} className="h-screen relative" />
+      <div ref={ref} className="h-1/2" />
 
       <section
         id="header"

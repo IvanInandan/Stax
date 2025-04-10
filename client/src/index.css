@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 body {
-  transition: background-color 0.3s ease, color 0.3s ease;
-  background-color: black;
+  background-color: #121113;
 }
 
 html {

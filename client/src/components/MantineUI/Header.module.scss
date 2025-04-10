@@ -20,7 +20,7 @@ $mantine-breakpoint-xl: 1400px;
 }
 
 .title {
-  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+  color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
   font-family: Greycliff CF, var(--mantine-font-family);
   font-size: 44px;
   line-height: 1.2;

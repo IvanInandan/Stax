@@ -105,7 +105,7 @@ export default function Header() {
   };
 
   return (
-    <Box pb={0}>
+    <Box pb={0} className="text-white">
       <header className={classes.header}>
         <Group
           justify="space-between"
