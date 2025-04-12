@@ -30,10 +30,12 @@ const TransactionForm = ({ addTransaction }) => {
   return (
     <div>
       <h2 className="form-header">Add transaction</h2>
-      <form onSubmit={createTransaction}>
+      <form onSubmit={createTransaction} className="flex flex-col gap-2">
         <div>
-          Amount $
+          <span className="text-white">Amount</span>
+          <br />
           <input
+            className="rounded-lg"
             type="number"
             value={amount}
             name="amount"
@@ -43,8 +45,10 @@ const TransactionForm = ({ addTransaction }) => {
         </div>
 
         <div>
-          Name
+          <span className="text-white">Name</span>
+          <br />
           <input
+            className="rounded-lg"
             type="text"
             value={name}
             name="name"
@@ -54,8 +58,10 @@ const TransactionForm = ({ addTransaction }) => {
         </div>
 
         <div>
-          Category
+          <span className="text-white">Category</span>
+          <br />
           <select
+            className="rounded-lg"
             value={category}
             name="category"
             id="category"

@@ -7,7 +7,12 @@ import Togglable from "./Togglable";
 // Import API services
 import transactionService from "../services/transactions";
 
+import { Container, Grid, SimpleGrid, Skeleton } from "@mantine/core";
+
 const Dashboard = ({ transactions }) => {
+  const PRIMARY_COL_HEIGHT = "300px";
+  const SECONDARY_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 2 - var(--mantine-spacing-md) / 2)`;
+
   // Declare reference variables
   const transactionFormRef = useRef();
 
@@ -80,7 +85,35 @@ const Dashboard = ({ transactions }) => {
 
   return (
     <div>
-      <h1>Dashboard</h1>
+      <h1 className="text-white text-7xl font-bold">Dashboard</h1>
+
+      <div className="my-6 px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Primary column */}
+          <div className="text-7xl text-white font-bold flex items-center justify-center">
+            Hello
+          </div>
+
+          {/* Secondary grid inside second column */}
+          <div className="grid grid-cols-1 gap-4">
+            <div
+              className="rounded-md bg-gray-300 dark:bg-gray-700"
+              style={{ height: "calc(150px - 0.5rem)" }}
+            />
+            <div className="grid grid-cols-2 gap-4">
+              <div
+                className="rounded-md bg-gray-300 dark:bg-gray-700"
+                style={{ height: "calc(150px - 0.5rem)" }}
+              />
+              <div
+                className="rounded-md bg-gray-300 dark:bg-gray-700"
+                style={{ height: "calc(150px - 0.5rem)" }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
       {transactionList()}
       {transactionForm()}
       <Categories transactions={transactions} />

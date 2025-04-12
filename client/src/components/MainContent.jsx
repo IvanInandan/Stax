@@ -1,5 +1,10 @@
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValueEvent,
+} from "motion/react";
 
 import Nav from "./MantineUI/Nav";
 import Header from "./MantineUI/Header";
@@ -14,6 +19,18 @@ import Reveal from "./TextReveal";
 const MainContent = () => {
   // Attach ref to DOM element to track position on screen
   const ref = useRef(null);
+
+  //START TEST
+  const textRef = useRef(null);
+  const { scrollYProgress: textScroll } = useScroll({
+    target: textRef,
+    offset: ["start end", "end start"],
+  });
+
+  useMotionValueEvent(textScroll, "change", (latest) => {
+    console.log("textScroll:", latest);
+  });
+  //END TEST
 
   // Returns a value from 0 -> 1 where it tracks ref from 'start-end' to 'end-start'
   // In offset: "target obj, viewport" --> "start end" means when the start (top) of the target obj (ref) hits the end (bottom) of the viewport
