@@ -1,7 +1,7 @@
 function App() {
   return (
     <>
-      <div>Hello</div>
+      <div className="text-2xl">Hello</div>
     </>
   );
 }
