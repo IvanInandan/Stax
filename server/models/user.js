@@ -13,12 +13,12 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   passwordHash: String,
-  recipes: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Recipe",
-    },
-  ],
+  // recipes: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: "Recipe",
+  //   },
+  // ],
 });
 
 userSchema.set("toJSON", {
