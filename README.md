@@ -1,6 +1,6 @@
-# BeliBites
+# Stax
 
-BeliBits is a recipe sharing collaboration web application built using React, node.js with Express and MongoDB.
+Stax is a full-stack web application to track financial expenses.
 
 ## Tech Stack
 
