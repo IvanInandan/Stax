@@ -11,7 +11,7 @@ import {
 
 import Logo from "@/components/shadcn-studio/logo";
 
-import ThemeToggle from "@/components/ThemeToggle";
+import ThemeToggle from "@/components/ui/ThemeToggleButton";
 
 const navigationData = [
   { title: "home", href: "#" },
@@ -47,9 +47,7 @@ const Navbar = () => {
           <Button variant="secondary" size="sm">
             register
           </Button>
-          <Button size="icon">
-            <ThemeToggle />
-          </Button>
+          <ThemeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger className="md:hidden" asChild>
               <Button variant="outline" size="icon">

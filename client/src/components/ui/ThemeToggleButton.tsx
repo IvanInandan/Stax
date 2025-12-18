@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { SunIcon, MoonIcon } from "lucide-react";
+import { Button } from "./button";
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useState("light");
@@ -28,10 +29,10 @@ const ThemeToggle = () => {
   };
 
   return (
-    <button onClick={toggleTheme}>
+    <Button onClick={toggleTheme}>
       {theme === "light" ? <SunIcon /> : <MoonIcon />}
       <span className="sr-only">Toggle Theme</span>
-    </button>
+    </Button>
   );
 };
 
