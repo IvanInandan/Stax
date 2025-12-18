@@ -1,17 +1,7 @@
-import { Button } from "./components/ui/button";
+import LandingPage from "./components/pages/LandingPage";
 
 const App = () => {
-  return (
-    <>
-      <div>
-        <h1>Hello</h1>
-      </div>
-
-      <div className="flex min-h-svh flex-col items-center justify-center">
-        <Button>Click me</Button>
-      </div>
-    </>
-  );
+  return <LandingPage />;
 };
 
 export default App;
