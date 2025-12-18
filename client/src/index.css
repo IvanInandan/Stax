@@ -51,9 +51,10 @@
   --shadow-spread: 2px;
   --shadow-offset-x: 4px;
   --shadow-offset-y: 4px;
-  --letter-spacing: 0.025em;
+  /* --letter-spacing: 0.025em; */
   --spacing: 0.25rem;
   --shadow: 4px 4px 0px 0px hsl(0 0% 0% / 1);
+
   --shadow-2xs: 4px 4px 0px 2px hsl(0 0% 0% / 0.5);
   --shadow-xs: 4px 4px 0px 2px hsl(0 0% 0% / 0.5);
   --shadow-sm: 4px 4px 0px 2px hsl(0 0% 0% / 1),
@@ -115,7 +116,7 @@
   --shadow-spread: 2px;
   --shadow-offset-x: 4px;
   --shadow-offset-y: 4px;
-  --letter-spacing: 0.025em;
+  /* --letter-spacing: 0.025em; */
   --spacing: 0.25rem;
   --shadow: 4px 4px 0px 0px hsl(0 0% 0% / 1);
   --shadow-2xs: 4px 4px 0px 2px hsl(0 0% 0% / 0.5);
