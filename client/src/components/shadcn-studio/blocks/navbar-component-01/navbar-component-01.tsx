@@ -42,10 +42,7 @@ const Navbar = () => {
 
         <div className="flex items-center gap-6">
           <Button variant="secondary" size="sm">
-            login
-          </Button>
-          <Button variant="secondary" size="sm">
-            register
+            login / register
           </Button>
           <ThemeToggle />
           <DropdownMenu>
