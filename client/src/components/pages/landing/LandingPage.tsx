@@ -1,5 +1,4 @@
-// src/pages/landing-page.tsx
-import Navbar from "../shadcn-studio/blocks/navbar-component-01/navbar-component-01";
+import Navbar from "@/components/shadcn-studio/blocks/navbar-component-01/navbar-component-01";
 
 const LandingPage = () => {
   return (

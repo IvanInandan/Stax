@@ -1,4 +1,5 @@
-import LandingPage from "./components/pages/LandingPage";
+import LandingPage from "./components/pages/landing/LandingPage";
+import DashboardPage from "./components/pages/dashboard/DashboardPage";
 
 // // Import custom hooks
 // import { useAuth } from "./hooks/useAuth";
@@ -11,8 +12,11 @@ import { ToastContainer } from "react-toastify";
 // // Import functions
 // import { token, setToken } from "./services/apiClient";
 
+import { useNavigate } from "react-router-dom";
+
 const App = () => {
-  const [user, _setUser] = useState(false);
+  const [user, setUser] = useState(false);
+  const navigate = useNavigate();
 
   // const { cacheUser } = useAuth();
   // const user = useSelector((state) => state.user);
@@ -35,6 +39,15 @@ const App = () => {
 
   return (
     <div>
+      <button
+        onClick={() => {
+          setUser(!user);
+          console.log(user);
+          navigate;
+        }}
+      >
+        Sign in
+      </button>
       <Routes>
         {/* Public routes */}
         <Route
@@ -45,7 +58,7 @@ const App = () => {
         />
 
         {/* Protected routes, only accessible if the user is authenticated */}
-        {user && (
+        {user || (
           <>
             {/* <Route
               path="/dashboard"
@@ -59,7 +72,10 @@ const App = () => {
         )}
 
         {/* If the user is not authenticated and tries to access protected routes */}
-        <Route path="/dashboard" element={<Navigate to="/" replace />} />
+        <Route
+          path="/dashboard"
+          element={user ? <DashboardPage /> : <Navigate to="/" replace />}
+        />
       </Routes>
 
       <ToastContainer
