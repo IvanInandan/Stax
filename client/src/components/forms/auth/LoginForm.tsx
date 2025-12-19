@@ -14,6 +14,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { useNavigate } from "react-router-dom";
 
 interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
   onSwitchForm?: () => void;
@@ -24,6 +25,8 @@ export function LoginForm({
   className,
   ...props
 }: LoginFormProps) {
+  const navigate = useNavigate();
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -59,7 +62,11 @@ export function LoginForm({
                 </div>
               </Field>
               <Field>
-                <Button className="bg-secondary" type="submit">
+                <Button
+                  className="bg-secondary"
+                  type="submit"
+                  onClick={() => navigate("/dashboard")}
+                >
                   Login
                 </Button>
                 <FieldDescription className="text-center">

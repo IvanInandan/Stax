@@ -4,12 +4,15 @@ import {
   DialogTrigger,
   DialogOverlay,
   DialogClose,
+  DialogTitle,
+  DialogDescription,
 } from "@radix-ui/react-dialog";
-import { LoginForm } from "../../forms/auth/LoginForm";
 import { Button } from "../../ui/button";
 import { X } from "lucide-react";
 import { useState } from "react";
-import RegisterForm from "@/components/forms/auth/RegisterForm";
+
+import { LoginForm } from "@/components/forms/auth/LoginForm";
+import { RegisterForm } from "@/components/forms/auth/RegisterForm";
 
 const LoginModal = () => {
   const [form, setForm] = useState("login");
@@ -42,6 +45,7 @@ const LoginModal = () => {
               <X />
             </Button>
           </DialogClose>
+          <DialogTitle /> <DialogDescription />
           {form === "login" ? (
             <LoginForm onSwitchForm={() => setForm("register")} />
           ) : (
