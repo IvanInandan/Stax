@@ -8,10 +8,22 @@ import {
 import { LoginForm } from "../../forms/auth/LoginForm";
 import { Button } from "../../ui/button";
 import { X } from "lucide-react";
+import { useState } from "react";
+import RegisterForm from "@/components/forms/auth/RegisterForm";
 
 const LoginModal = () => {
+  const [form, setForm] = useState("login");
+  const [open, setOpen] = useState(false);
+
+  const handleOpenChange = (isOpen: boolean) => {
+    if (!isOpen) {
+      setForm("login");
+    }
+    setOpen(isOpen);
+  };
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <Button className="bg-secondary hover:bg-primary" size="sm">
           login / register
@@ -30,8 +42,11 @@ const LoginModal = () => {
               <X />
             </Button>
           </DialogClose>
-
-          <LoginForm />
+          {form === "login" ? (
+            <LoginForm onSwitchForm={() => setForm("register")} />
+          ) : (
+            <RegisterForm onSwitchForm={() => setForm("login")} />
+          )}
         </div>
       </DialogContent>
     </Dialog>

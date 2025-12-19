@@ -15,10 +15,15 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
+interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
+  onSwitchForm?: () => void;
+}
+
 export function LoginForm({
+  onSwitchForm,
   className,
   ...props
-}: React.ComponentProps<"div">) {
+}: LoginFormProps) {
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -58,7 +63,10 @@ export function LoginForm({
                   Login
                 </Button>
                 <FieldDescription className="text-center">
-                  Don&apos;t have an account? <a href="#">Sign up</a>
+                  Don&apos;t have an account?{" "}
+                  <a href="#" onClick={() => onSwitchForm?.()}>
+                    Sign up
+                  </a>
                 </FieldDescription>
               </Field>
             </FieldGroup>
