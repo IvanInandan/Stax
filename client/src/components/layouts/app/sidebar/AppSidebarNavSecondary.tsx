@@ -6,57 +6,27 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import {
-  CalendarClockIcon,
-  SettingsIcon,
-  SquareActivityIcon,
-  Undo2Icon,
-  UsersIcon,
-} from "lucide-react";
+import { Apple, ShoppingBasket, UserRound } from "lucide-react";
 
 const SidebarNavSecondary = () => {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Supporting Features</SidebarGroupLabel>
+      <SidebarGroupLabel>Features</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
               <a href="#">
-                <SquareActivityIcon />
-                <span>Real Time Monitoring</span>
+                <ShoppingBasket />
+                <span>Shopping List</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
               <a href="#">
-                <CalendarClockIcon />
-                <span>Schedule Post & Calendar</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <a href="#">
-                <Undo2Icon />
-                <span>Report & Export</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <a href="#">
-                <SettingsIcon />
-                <span>Settings & Integrations</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <a href="#">
-                <UsersIcon />
-                <span>User Management</span>
+                <Apple />
+                <span>Nutrition Tracker</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>

@@ -16,6 +16,9 @@ import {
   CrownIcon,
   HashIcon,
   UsersIcon,
+  Heart,
+  Utensils,
+  Newspaper,
 } from "lucide-react";
 
 const SidebarNavMain = () => {
@@ -27,32 +30,8 @@ const SidebarNavMain = () => {
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
               <a href="#">
-                <ChartSplineIcon />
-                <span>Content Performance</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <a href="#">
-                <UsersIcon />
-                <span>Audience Insight</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <a href="#">
-                <ChartPieIcon />
-                <span>Engagement Metrics</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <a href="#">
-                <HashIcon />
-                <span>Hashtag Performance</span>
+                <Newspaper />
+                <span>Feed</span>
               </a>
             </SidebarMenuButton>
             <SidebarMenuBadge className="bg-primary/10 rounded-full">
@@ -62,32 +41,24 @@ const SidebarNavMain = () => {
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
               <a href="#">
-                <ArrowRightLeftIcon />
-                <span>Competitor Analysis</span>
+                <UsersIcon />
+                <span>Discover</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
               <a href="#">
-                <Clock9Icon />
-                <span>Campaign Tracking</span>
+                <Utensils />
+                <span>Your Recipes</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
               <a href="#">
-                <ClipboardListIcon />
-                <span>Sentiment Tracking</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <a href="#">
-                <CrownIcon />
-                <span>Influencer</span>
+                <Heart />
+                <span>Favorites</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
