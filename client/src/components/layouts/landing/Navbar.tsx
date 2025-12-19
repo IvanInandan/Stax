@@ -13,7 +13,7 @@ import Logo from "@/components/shadcn-studio/logo";
 
 import ThemeToggle from "@/components/ui/ThemeToggleButton";
 
-import { useNavigate } from "react-router-dom";
+import LoginModal from "@/components/modals/auth/LoginModal";
 
 const navigationData = [
   { title: "home", href: "#" },
@@ -22,8 +22,6 @@ const navigationData = [
 ];
 
 const Navbar = () => {
-  const navigate = useNavigate();
-
   return (
     <header className="bg-background sticky top-0 z-50">
       <div className="relative mx-auto flex max-w-7xl items-center justify-between px-4 py-7 sm:px-6">
@@ -45,13 +43,7 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-6">
-          <Button
-            className="bg-secondary hover:bg-primary"
-            size="sm"
-            onClick={() => navigate("/dashboard")}
-          >
-            login / register
-          </Button>
+          <LoginModal />
           <ThemeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger className="md:hidden" asChild>
