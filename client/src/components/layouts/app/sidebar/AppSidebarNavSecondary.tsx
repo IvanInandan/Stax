@@ -6,7 +6,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Apple, ShoppingBasket, UserRound } from "lucide-react";
+import { Apple, Dumbbell, ShoppingBasket } from "lucide-react";
 
 const SidebarNavSecondary = () => {
   return (
@@ -27,6 +27,14 @@ const SidebarNavSecondary = () => {
               <a href="#">
                 <Apple />
                 <span>Nutrition Tracker</span>
+              </a>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <a href="#">
+                <Dumbbell />
+                <span>Workouts</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>

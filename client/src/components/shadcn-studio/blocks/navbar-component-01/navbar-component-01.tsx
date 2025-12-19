@@ -46,7 +46,7 @@ const Navbar = () => {
 
         <div className="flex items-center gap-6">
           <Button
-            variant="secondary"
+            className="bg-secondary hover:bg-primary"
             size="sm"
             onClick={() => navigate("/dashboard")}
           >

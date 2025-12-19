@@ -7,19 +7,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import {
-  ArrowRightLeftIcon,
-  ChartPieIcon,
-  ChartSplineIcon,
-  ClipboardListIcon,
-  Clock9Icon,
-  CrownIcon,
-  HashIcon,
-  UsersIcon,
-  Heart,
-  Utensils,
-  Newspaper,
-} from "lucide-react";
+import { UsersIcon, Heart, Utensils, Newspaper } from "lucide-react";
 
 const SidebarNavMain = () => {
   return (

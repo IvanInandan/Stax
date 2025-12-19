@@ -5,8 +5,7 @@ import DashboardPage from "./components/pages/dashboard/DashboardPage";
 // import { useAuth } from "./hooks/useAuth";
 
 // Import Libraries
-import { useState, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 // // Import functions
