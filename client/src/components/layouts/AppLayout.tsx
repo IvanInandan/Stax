@@ -1,5 +1,7 @@
 import { Sidebar, SidebarProvider } from "@/components/ui/sidebar";
 import AppSidebar from "../sidebar/AppSidebar";
+import AppHeader from "./AppHeader";
+import AppFooter from "./AppFooter";
 
 const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
@@ -8,7 +10,11 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <Sidebar>
           <AppSidebar />
         </Sidebar>
-        <main className="flex-1">{children}</main>
+        <main className="flex flex-col flex-1">
+          <AppHeader />
+          {children}
+          <AppFooter />
+        </main>
       </div>
     </SidebarProvider>
   );
