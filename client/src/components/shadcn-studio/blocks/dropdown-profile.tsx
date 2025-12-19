@@ -78,16 +78,8 @@ const ProfileDropdown = ({ trigger, defaultOpen, align = "end" }: Props) => {
 
         <DropdownMenuGroup>
           <DropdownMenuItem className="px-4 py-2.5 text-base">
-            <UsersIcon className="text-foreground size-5" />
-            <span>Manage team</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem className="px-4 py-2.5 text-base">
             <SquarePenIcon className="text-foreground size-5" />
             <span>Customization</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem className="px-4 py-2.5 text-base">
-            <CirclePlusIcon className="text-foreground size-5" />
-            <span>Add team account</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
 
