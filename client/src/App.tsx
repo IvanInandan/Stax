@@ -8,6 +8,7 @@ import DashboardPage from "./components/pages/dashboard/DashboardPage";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import LoginPage from "./components/pages/login/LoginPage";
+import Hero from "./components/pages/landing/Intro";
 
 // // Import functions
 // import { token, setToken } from "./services/apiClient";
@@ -36,6 +37,7 @@ const App = () => {
     <div>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/hero" element={<Hero />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
       </Routes>

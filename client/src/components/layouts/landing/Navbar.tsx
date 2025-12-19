@@ -9,11 +9,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import Logo from "@/components/shadcn-studio/logo";
+import Logo from "@/components/ui/shadcn-studio/logo";
 
 import ThemeToggle from "@/components/ui/ThemeToggleButton";
 
 import LoginModal from "@/components/modals/auth/LoginModal";
+import { TextRoll } from "@/components/ui/skiper-ui/skiper58";
 
 const navigationData = [
   { title: "home", href: "#" },
@@ -23,7 +24,7 @@ const navigationData = [
 
 const Navbar = () => {
   return (
-    <header className="bg-background sticky top-0 z-50">
+    <header className="bg-background sticky top-0 z-50 border-b-1 border-border/10">
       <div className="relative mx-auto flex max-w-7xl items-center justify-between px-4 py-7 sm:px-6">
         <div className="flex">
           <Logo className="text-foreground gap-3" />
@@ -31,14 +32,15 @@ const Navbar = () => {
 
         <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 font-medium text-muted-foreground md:flex lg:gap-16">
           <a href="#" className="hover:text-primary max-md:hidden">
-            home
-          </a>
-          <a href="#" className="hover:text-primary max-md:hidden">
-            about
+            <TextRoll center>home</TextRoll>
           </a>
 
           <a href="#" className="hover:text-primary max-md:hidden">
-            contact
+            <TextRoll center>about</TextRoll>
+          </a>
+
+          <a href="#" className="hover:text-primary max-md:hidden">
+            <TextRoll center>contact</TextRoll>
           </a>
         </div>
 

@@ -1,4 +1,4 @@
-import ProfileDropdown from "@/components/shadcn-studio/blocks/dropdown-profile";
+import ProfileDropdown from "@/components/ui/shadcn-studio/blocks/dropdown-profile";
 import {
   Breadcrumb,
   BreadcrumbItem,

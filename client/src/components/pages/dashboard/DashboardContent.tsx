@@ -1,13 +1,13 @@
 import { CalendarX2Icon, TriangleAlertIcon, TruckIcon } from "lucide-react";
 
 import { Card } from "@/components/ui/card";
-import ProductInsightsCard from "@/components/shadcn-studio/blocks/widget-product-insights";
-import SalesMetricsCard from "@/components/shadcn-studio/blocks/chart-sales-metrics";
-import StatisticsCard from "@/components/shadcn-studio/blocks/statistics-card-01";
-import TotalEarningCard from "@/components/shadcn-studio/blocks/widget-total-earning";
+import ProductInsightsCard from "@/components/ui/shadcn-studio/blocks/widget-product-insights";
+import SalesMetricsCard from "@/components/ui/shadcn-studio/blocks/chart-sales-metrics";
+import StatisticsCard from "@/components/ui/shadcn-studio/blocks/statistics-card-01";
+import TotalEarningCard from "@/components/ui/shadcn-studio/blocks/widget-total-earning";
 import TransactionDatatable, {
   type Item,
-} from "@/components/shadcn-studio/blocks/datatable-transaction";
+} from "@/components/ui/shadcn-studio/blocks/datatable-transaction";
 
 // Statistics card data
 const StatisticsCardData = [

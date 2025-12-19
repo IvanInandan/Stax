@@ -66,7 +66,13 @@ export function RegisterForm({ onSwitchForm, ...props }: RegisterFormProps) {
                 <Button type="submit">Create Account</Button>
                 <FieldDescription className="px-6 text-center">
                   Already have an account?{" "}
-                  <a href="#" onClick={() => onSwitchForm?.()}>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onSwitchForm?.();
+                    }}
+                  >
                     Sign in
                   </a>
                 </FieldDescription>
