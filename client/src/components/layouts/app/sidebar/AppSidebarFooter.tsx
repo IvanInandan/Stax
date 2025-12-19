@@ -1,5 +1,5 @@
-import { NavUser } from "../ui/nav-user";
-import { SidebarFooter } from "../ui/sidebar";
+import { NavUser } from "@/components/ui/nav-user";
+import { SidebarFooter } from "@/components/ui/sidebar";
 
 const AppSidebarFooter = () => {
   return (

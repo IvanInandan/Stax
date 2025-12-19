@@ -1,4 +1,4 @@
-import AppLayout from "../../layouts/AppLayout";
+import AppLayout from "../../layouts/app/content/AppLayout";
 import DashboardContent from "./DashboardContent";
 
 const DashboardPage = () => {
