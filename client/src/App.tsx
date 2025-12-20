@@ -6,9 +6,10 @@ import DashboardPage from "./components/pages/dashboard/DashboardPage";
 
 // Import Libraries
 import { Routes, Route } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import LoginPage from "./components/pages/login/LoginPage";
 import Hero from "./components/pages/landing/Intro";
+
+import { Toaster } from "sonner";
 
 // // Import functions
 // import { token, setToken } from "./services/apiClient";
@@ -42,16 +43,7 @@ const App = () => {
         <Route path="/dashboard" element={<DashboardPage />} />
       </Routes>
 
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        pauseOnHover
-        draggable
-        theme="colored"
-      />
+      <Toaster />
     </div>
   );
 };

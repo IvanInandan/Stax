@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import ThemeToggle from "@/components/ui/ThemeToggleButton";
+import ThemeToggleButton from "@/components/ui/ThemeToggleButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Separator } from "@radix-ui/react-dropdown-menu";
 
@@ -40,8 +40,7 @@ const AppHeader = () => {
           </Breadcrumb>
         </div>
         <div className="flex items-center gap-1.5">
-          <ThemeToggle variant="ghost" />
-
+          <ThemeToggleButton variant="ghost" />
           <ProfileDropdown
             trigger={
               <Button variant="ghost" size="icon" className="size-9.5">

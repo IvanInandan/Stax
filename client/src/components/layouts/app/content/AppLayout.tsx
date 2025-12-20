@@ -10,9 +10,11 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <Sidebar>
           <AppSidebar />
         </Sidebar>
-        <main className="flex flex-col flex-1">
+        <main id="root" className="flex flex-col flex-1">
           <AppHeader />
-          {children}
+          <div className="flex-1">
+            {children} {/* DashboardContent now uses <div>, not <main> */}
+          </div>
           <AppFooter />
         </main>
       </div>
