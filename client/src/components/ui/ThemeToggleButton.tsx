@@ -9,6 +9,8 @@ import {
   type AnimationStart,
 } from "./skiper-ui/skiper26";
 
+import { motion, AnimatePresence } from "framer-motion";
+
 // Extend Button props so you can pass variant, size, etc.
 interface ThemeToggleButtonProps extends React.ComponentProps<typeof Button> {
   variantAnimation?: AnimationVariant; // renamed to avoid conflict with Button's variant
@@ -71,10 +73,26 @@ const ThemeToggleButton = ({
   return (
     <Button
       onClick={toggleTheme}
-      className="flex items-center justify-center"
-      {...props} // forwards all Button props, e.g., variant="ghost"
+      className="flex items-center justify-center p-2" // optional padding
+      {...props}
     >
-      {theme === "light" ? <SunIcon /> : <MoonIcon />}
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={theme}
+          initial={{ rotate: 0, opacity: 0 }}
+          animate={{ rotate: 360, opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex w-6 h-6 items-center justify-center" // fix size
+        >
+          {theme === "light" ? (
+            <SunIcon className="w-6 h-6" />
+          ) : (
+            <MoonIcon className="w-6 h-6" />
+          )}
+        </motion.span>
+      </AnimatePresence>
+
       <span className="sr-only">Toggle Theme</span>
     </Button>
   );

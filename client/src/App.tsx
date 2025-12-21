@@ -10,6 +10,7 @@ import LoginPage from "./components/pages/login/LoginPage";
 import Hero from "./components/pages/landing/Intro";
 
 import { Toaster } from "sonner";
+import { Skiper87 } from "./components/ui/skiper-ui/skiper87";
 
 // // Import functions
 // import { token, setToken } from "./services/apiClient";
@@ -35,16 +36,17 @@ const App = () => {
   // }, [user]);
 
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/hero" element={<Hero />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/test" element={<Skiper87 />} />
       </Routes>
 
       <Toaster />
-    </div>
+    </>
   );
 };
 

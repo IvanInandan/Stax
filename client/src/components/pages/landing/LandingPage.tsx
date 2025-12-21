@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Navbar from "@/components/layouts/landing/Navbar";
 import Intro from "./Intro";
-import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
+import { TextRoll } from "@/components/ui/skiper-ui/skiper58";
 
 const LandingPage = () => {
   const { scrollY } = useScroll();
@@ -60,7 +59,7 @@ const LandingPage = () => {
       </div> */}
 
       {/* Main content */}
-      <main>
+      <main className="scroll-fade-main">
         <motion.section
           style={{
             y: heroY,
@@ -68,31 +67,10 @@ const LandingPage = () => {
           }}
           className="sticky top-0 h-screen flex items-center justify-center"
         >
-          <h1 className="text-4xl font-bold">Hero Section</h1>
-          <Button
-            onClick={() =>
-              toast.success("Warning: Please check the entered data.")
-            }
-          >
-            success
-          </Button>
-          <Button
-            onClick={() =>
-              toast.info("This is for your information, please note.")
-            }
-          >
-            warning
-          </Button>
-          <Button
-            onClick={() =>
-              toast.error("Warning: Please check the entered data.")
-            }
-          >
-            error
-          </Button>
+          <h1>Hero</h1>
         </motion.section>
 
-        <section className="h-screen flex items-center justify-center">
+        <section className="scroll-fade-y relative h-screen flex items-center justify-center">
           <h2 className="text-3xl">Features</h2>
         </section>
 

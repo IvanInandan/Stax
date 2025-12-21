@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
-import { Link000 } from "@/components/ui/skiper-ui/skiper40";
 
 interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
   onSwitchForm?: () => void;

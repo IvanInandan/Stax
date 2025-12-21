@@ -1,7 +1,7 @@
 "use client";
 
 import { gsap } from "gsap";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface CrowdCanvasProps {
   src: string;
@@ -66,7 +66,7 @@ const CrowdCanvas = ({ src, rows = 15, cols = 7 }: CrowdCanvasProps) => {
     };
 
     const normalWalk = ({ peep, props }: { peep: any; props: any }) => {
-      const { startX, startY, endX } = props;
+      const { startY, endX } = props;
       const xDuration = 10;
       const yDuration = 0.25;
 
@@ -79,7 +79,7 @@ const CrowdCanvas = ({ src, rows = 15, cols = 7 }: CrowdCanvasProps) => {
           x: endX,
           ease: "none",
         },
-        0,
+        0
       );
       tl.to(
         peep,
@@ -89,7 +89,7 @@ const CrowdCanvas = ({ src, rows = 15, cols = 7 }: CrowdCanvasProps) => {
           yoyo: true,
           y: startY - 10,
         },
-        0,
+        0
       );
 
       return tl;
@@ -151,7 +151,7 @@ const CrowdCanvas = ({ src, rows = 15, cols = 7 }: CrowdCanvasProps) => {
             0,
             0,
             peep.width,
-            peep.height,
+            peep.height
           );
           ctx.restore();
         },
@@ -189,7 +189,7 @@ const CrowdCanvas = ({ src, rows = 15, cols = 7 }: CrowdCanvasProps) => {
               rectWidth,
               rectHeight,
             ],
-          }),
+          })
         );
       }
     };

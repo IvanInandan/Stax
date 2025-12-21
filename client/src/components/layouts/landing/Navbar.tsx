@@ -11,10 +11,9 @@ import {
 
 import Logo from "@/assets/logo";
 
-import ThemeToggle from "@/components/ui/ThemeToggleButton";
-
 import LoginModal from "@/components/modals/auth/LoginModal";
 import { TextRoll } from "@/components/ui/skiper-ui/skiper58";
+import ThemeToggleButton from "@/components/ui/ThemeToggleButton";
 
 const navigationData = [
   { title: "home", href: "#" },
@@ -24,7 +23,7 @@ const navigationData = [
 
 const Navbar = () => {
   return (
-    <header className="bg-background sticky top-0 z-50">
+    <header className="bg-transparent sticky top-0 z-50">
       <div className="relative mx-auto flex max-w-7xl items-center justify-between px-4 py-7 sm:px-6">
         <div className="flex">
           <Logo className="text-foreground gap-3" />
@@ -55,7 +54,7 @@ const Navbar = () => {
 
         <div className="flex items-center gap-6">
           <LoginModal />
-          <ThemeToggle />
+          <ThemeToggleButton />
           <DropdownMenu>
             <DropdownMenuTrigger className="md:hidden" asChild>
               <Button variant="outline" size="icon">
