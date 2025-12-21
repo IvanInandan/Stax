@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Navbar from "@/components/layouts/landing/Navbar";
 import Intro from "./Intro";
+import Footer from "@/components/layouts/landing/Footer";
 
 const LandingPage = () => {
   const { scrollY } = useScroll();
@@ -77,6 +78,8 @@ const LandingPage = () => {
           <h2 className="text-3xl">Testimonials</h2>
         </section>
       </main>
+
+      <Footer />
     </>
   );
 };
