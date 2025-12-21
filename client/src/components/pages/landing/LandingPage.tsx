@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Navbar from "@/components/layouts/landing/Navbar";
 import Intro from "./Intro";
-import { TextRoll } from "@/components/ui/skiper-ui/skiper58";
 
 const LandingPage = () => {
   const { scrollY } = useScroll();
