@@ -215,6 +215,10 @@
     @apply border-border outline-ring/50;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply text-foreground bg-background font-mono font-light;
     letter-spacing: var(--tracking-wide);
