@@ -10,20 +10,18 @@ import { Input } from "@/components/ui/input";
 
 const Footer = () => {
   return (
-    <div className="bg-sidebar pt-20 pb-10 px-10 border-red-500 border-2">
-      <div className="flex border-black border-2">
+    <div className="bg-sidebar pt-20 pb-10 px-10">
+      <div className="flex">
         {/* LEFT */}
-        <div className="flex-grow border-white border-2">
-          <p className="text-7xl text-white">FOOTER</p>
-        </div>
+        <div className=""></div>
 
         {/* RIGHT */}
-        <div className="basis-1/3 flex-shrink-0 border-white border-2">
-          <form>
+        <div className="basis-1/3">
+          {/* <form>
             <FieldSeparator />
             <FieldGroup>
               <div className="flex items-center">
-                <Field className="grow border-sidebar-border border-2">
+                <Field className="grow border-sidebar-border">
                   <Input
                     id="email"
                     type="email"
@@ -43,7 +41,7 @@ const Footer = () => {
                 </Field>
               </div>
             </FieldGroup>
-          </form>
+          </form> */}
         </div>
       </div>
     </div>

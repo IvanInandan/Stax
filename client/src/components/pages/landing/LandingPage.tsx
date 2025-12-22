@@ -3,8 +3,11 @@
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Navbar from "@/components/layouts/landing/Navbar";
-import Intro from "./Intro";
+import Intro from "../../layouts/landing/Intro";
+import ScrollGraphic from "@/components/ui/ScrollGraphic";
 import Footer from "@/components/layouts/landing/Footer";
+import Hero from "../../layouts/landing/Hero";
+import Features from "@/components/layouts/landing/Features";
 
 const LandingPage = () => {
   const { scrollY } = useScroll();
@@ -67,15 +70,29 @@ const LandingPage = () => {
           }}
           className="sticky top-0 h-screen flex items-center justify-center"
         >
-          <h1>Hero</h1>
+          <Hero />
         </motion.section>
 
-        <section className="scroll-fade-y relative h-screen flex items-center justify-center">
-          <h2 className="text-3xl">Features</h2>
+        <ScrollGraphic />
+
+        <div className="h-[50vh]" />
+
+        <section className="h-screen w-full flex items-center justify-center">
+          <p className="font-sans text-center text-9xl font-medium tracking-tightest">
+            Create Recipes <br />
+            And Join The Hungry <br />
+            Community
+          </p>
+        </section>
+
+        <Features />
+
+        <section className="h-screen flex items-center justify-center">
+          <h2 className="text-3xl">newsletter</h2>
         </section>
 
         <section className="h-screen flex items-center justify-center">
-          <h2 className="text-3xl">Testimonials</h2>
+          <h2 className="text-3xl">contact</h2>
         </section>
       </main>
 
