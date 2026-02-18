@@ -1,6 +1,6 @@
 # forked
 
-forked is a full-stack web application to track financial expenses.
+forked is a full-stack React application to collaborate with other chefs using a version controlled community log.
 
 ## Tech Stack
 
