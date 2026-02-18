@@ -1,6 +1,6 @@
-# Stax
+# forked
 
-Stax is a full-stack web application to track financial expenses.
+forked is a full-stack web application to track financial expenses.
 
 ## Tech Stack
 
